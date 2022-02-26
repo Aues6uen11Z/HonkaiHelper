@@ -1,22 +1,27 @@
 # -*- encoding=utf8 -*-
 
-import os
-
-from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 
-from config import *
+from event import *
 
-os.system(game_path)
+if __name__ == '__main__':
+    # 启动游戏
+    os.system(game_path)
+    sleep(5)
 
-if not cli_setup():
-    auto_setup(__file__, logdir=True, devices=["Windows:///?title=崩坏3", ])
+    # 连接游戏
+    if not cli_setup():
+        auto_setup(__file__, logdir=True, devices=["Windows:///?title=崩坏3", ])
 
+    # 做日常
+    login()
+    daily(False)
+    random_events = [gold, expedition, work, sweep]
+    random.shuffle(random_events)
+    for i in range(4):
+        random_events[i]()
+    daily(True)
+    bp()
 
-# script content
-print("start...")
-# generate html report
-# from airtest.report.report import simple_report
-# simple_report(__file__, logpath=True)
-
-print(1)
+    # 结束游戏进程
+    device().kill()
