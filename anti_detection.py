@@ -13,6 +13,7 @@ def random_coordinate(x, y, w, h):
 
 # 随机点击以(x,y)为中心，w为宽，h为高的区域
 def random_click(x, y, w, h, times=1):
+    sleep(random.uniform(0.1, 0.8))
     touch(random_coordinate(x, y, w, h), times=times)
 
 
