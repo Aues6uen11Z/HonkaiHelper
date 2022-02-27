@@ -1,12 +1,17 @@
 # -*- encoding=utf8 -*-
 __author__ = "Aues6uen11Z"
 
+import shutil
+
 from airtest.cli.parser import cli_setup
 from airtest.report.report import simple_report
 
 from event import *
 
 if __name__ == '__main__':
+    # 清楚上一次的报告
+    shutil.rmtree('log')
+
     # 启动游戏
     os.system(game_path)
     sleep(5)
