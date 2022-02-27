@@ -1,4 +1,5 @@
 # -*- encoding=utf8 -*-
+__author__ = "Aues6uen11Z"
 
 from airtest.cli.parser import cli_setup
 from airtest.report.report import simple_report
@@ -28,4 +29,4 @@ if __name__ == '__main__':
     device().kill()
 
     # 生成报告
-    simple_report(__file__)
+    simple_report(__file__, output='log/log.html')

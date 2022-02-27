@@ -1,5 +1,3 @@
-# -*- encoding=utf8 -*-
-
 from anti_detection import *
 from config import *
 
