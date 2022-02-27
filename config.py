@@ -5,7 +5,7 @@ game_path = 'D:/Games/"Honkai Impact 3"/Games/BH3.exe'
 expedition_times = 8
 
 # 打工点击位置
-wx, wy, ww, wh = 975, 120, 260, 120
+wx, wy, ww, wh = 975, 100, 260, 80
 
 # 每日任务领取位置
 dx, dy, dw, dh = 1152, 222, 120, 50
