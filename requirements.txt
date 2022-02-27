@@ -1,2 +1,0 @@
-airtest==1.2.4
-opencv_contrib_python==4.5.5.62
