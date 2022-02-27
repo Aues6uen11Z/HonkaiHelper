@@ -1,6 +1,7 @@
 # -*- encoding=utf8 -*-
 
 from airtest.cli.parser import cli_setup
+from airtest.report.report import simple_report
 
 from event import *
 
@@ -25,3 +26,6 @@ if __name__ == '__main__':
 
     # 结束游戏进程
     device().kill()
+
+    # 生成报告
+    simple_report(__file__)
