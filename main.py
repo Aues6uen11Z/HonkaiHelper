@@ -14,8 +14,8 @@ if __name__ == '__main__':
         shutil.rmtree('log')
 
     # 启动游戏
-    os.system(game_path)
-    sleep(5)
+    os.system('start ' + game_path)
+    sleep(10)
 
     # 连接游戏
     if not cli_setup():
