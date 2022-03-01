@@ -1,10 +1,14 @@
+from datetime import datetime
+
 from anti_detection import *
 from config import *
 
 
 # 登录前有可能要更新数据
 def check_update():
-    pass
+    if exists(Template(r"img/tpl1646114198037.png", record_pos=(0.002, -0.129), resolution=(1277, 720))):
+        find_click(Template(r"img/tpl1646114248108.png", record_pos=(0.0, 0.116), resolution=(1277, 720)))
+        find_click(Template(r"img/tpl1646114570699.png", record_pos=(0.0, 0.048), resolution=(1277, 720)), timeout=120)
 
 
 # 回到主界面
@@ -30,6 +34,13 @@ def login():
     back_to_main()
 
 
+# 戳老婆
+def lsp():
+    for _ in range(random.randint(1, 5)):
+        find_click(Template(r"img/tpl1646118716275.png", rgb=True, record_pos=(-0.098, -0.17), resolution=(1280, 720)),
+                   timeout=10)
+
+
 # 领金币
 def gold():
     if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
@@ -52,7 +63,8 @@ def expedition():
 
     # 挂远征
     for _ in range(expedition_times):
-        if not exists(Template(r"img/tpl1645857908239.png", record_pos=(0.237, -0.091), resolution=(1280, 720))):
+        if not exists(
+                Template(r"img/tpl1645857908239.png", rgb=True, record_pos=(0.237, -0.091), resolution=(1280, 720))):
             # 滑动远征列表
             p1 = random_coordinate(540, 640, 960, 100)
             p2 = random_coordinate(540, 300, 960, 100)
@@ -98,6 +110,42 @@ def work():
         device().key_press("`")
         device().key_release("`")
         sleep(1)
+    assert_exists(Template(r"img/tpl1645865800963.png", record_pos=(-0.068, -0.117), resolution=(1280, 720)),
+                  "返回家园界面发生错误")
+
+
+# 商店必买品
+def shop():
+    # 打开商店页面
+    if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
+        find_click(Template(r"img/tpl1645856299732.png", record_pos=(0.325, 0.248), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1646117052091.png", record_pos=(0.44, 0.246), resolution=(1274, 720)))
+    assert_exists(Template(r"img/tpl1646117195088.png", record_pos=(-0.404, -0.187), resolution=(1280, 720)),
+                  "打开商店页面发生错误")
+
+    # 金币商品
+    find_click(Template(r"img/tpl1646117309518.png", record_pos=(-0.405, -0.13), resolution=(1280, 720)))
+    p1 = random_coordinate(850, 600, 800, 100)
+    p2 = random_coordinate(850, 300, 800, 100)
+    swipe(p1, p2)
+    #     while find_click(Template(r"img/tpl1646117620315.png", rgb=True, record_pos=(0.052, 0.239), resolution=(1280, 720))):
+    #         find_click(Template(r"img/tpl1646117704059.png", threshold=0.5, rgb=True, record_pos=(0.198, 0.16), resolution=(1280, 720)))
+    #         sleep(random.uniform(0.1, 0.5))
+    #         device().key_press("I")
+    #         device().key_release("I")
+
+    # 每周时序通行证
+    if datetime.today().weekday() == 0:
+        find_click(Template(r"img/tpl1646117961571.png", record_pos=(-0.409, 0.166), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1646117979667.png", record_pos=(-0.407, 0.171), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1646117999435.png", record_pos=(-0.224, 0.065), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1646118020115.png", record_pos=(0.198, 0.161), resolution=(1280, 720)))
+
+    # 返回家园界面
+    sleep(3)
+    device().key_press("`")
+    device().key_release("`")
+
     assert_exists(Template(r"img/tpl1645865800963.png", record_pos=(-0.068, -0.117), resolution=(1280, 720)),
                   "返回家园界面发生错误")
 
@@ -161,8 +209,13 @@ def bp():
                   "打开凭证界面出现错误")
 
     # 领每周箱子
-    if find_click(Template(r"img/tpl1645874581457.png", record_pos=(-0.42, 0.216), resolution=(1280, 720)), timeout=1):
+    if datetime.today().weekday() == 0:
+        find_click(Template(r"img/tpl1645874581457.png", record_pos=(-0.42, 0.216), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1646114916091.png", record_pos=(-0.136, 0.115), resolution=(1277, 720)), timeout=1)
         find_click(Template(r"img/tpl1645874627052.png", record_pos=(0.0, 0.144), resolution=(1280, 720)))
+        if find_click(Template(r"img/tpl1646114953123.png", record_pos=(0.138, 0.219), resolution=(1277, 720)),
+                      timeout=1):
+            find_click(Template(r"img/tpl1646115009691.png", record_pos=(0.001, 0.145), resolution=(1277, 720)))
 
     # 领奖励
     random_click(px, py, pw, ph)
@@ -174,4 +227,51 @@ def bp():
     sleep(1)
     device().key_press("`")
     device().key_release("`")
+    assert_exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720)), '返回主界面发生错误')
+
+
+# 领邮件
+def mail():
+    # 打开邮件界面
+    back_to_main()
+    find_click(Template(r"img/tpl1646115129099.png", record_pos=(-0.427, -0.021), resolution=(1277, 720)))
+    assert_exists(Template(r"img/tpl1646115190028.png", record_pos=(-0.104, -0.244), resolution=(1277, 720)),
+                  "打开邮件界面发生错误")
+
+    # 领邮件
+    find_click(Template(r"img/tpl1646115235683.png", record_pos=(0.388, 0.246), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646115259631.png", record_pos=(0.0, 0.145), resolution=(1277, 720)))
+
+    # 返回主界面
+    device().key_press("`")
+    device().key_release("`")
+    assert_exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720)), '返回主界面发生错误')
+
+
+# 领舰团每周贡献奖励
+def armada():
+    # 打开舰团奖励界面
+    back_to_main()
+    find_click(Template(r"img/tpl1646115729748.png", record_pos=(0.191, 0.248), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646115760307.png", record_pos=(0.242, 0.242), resolution=(1277, 720)))
+    assert_exists(Template(r"img/tpl1646115792404.png", record_pos=(-0.346, -0.187), resolution=(1277, 720)),
+                  "打开舰团奖励页面发生错误")
+
+    # 领奖励
+    find_click(Template(r"img/tpl1646115833659.png", record_pos=(-0.441, -0.123), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646116572972.png", record_pos=(0.0, 0.145), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646115855947.png", record_pos=(-0.44, -0.034), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646116572972.png", record_pos=(0.0, 0.145), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646115869755.png", record_pos=(-0.44, 0.055), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646116572972.png", record_pos=(0.0, 0.145), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646115888227.png", record_pos=(-0.44, 0.142), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646116572972.png", record_pos=(0.0, 0.145), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646115903419.png", record_pos=(-0.441, 0.23), resolution=(1277, 720)))
+    find_click(Template(r"img/tpl1646116572972.png", record_pos=(0.0, 0.145), resolution=(1277, 720)))
+
+    # 返回主界面
+    for _ in range(2):
+        device().key_press("`")
+        device().key_release("`")
+        sleep(1)
     assert_exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720)), '返回主界面发生错误')

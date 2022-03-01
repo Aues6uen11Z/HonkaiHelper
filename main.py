@@ -9,8 +9,9 @@ from airtest.report.report import simple_report
 from event import *
 
 if __name__ == '__main__':
-    # 清楚上一次的报告
-    shutil.rmtree('log')
+    # 清除上一次的报告
+    if os.path.exists('log'):
+        shutil.rmtree('log')
 
     # 启动游戏
     os.system(game_path)
@@ -23,12 +24,17 @@ if __name__ == '__main__':
     # 做日常
     login()
     daily(False)
-    random_events = [gold, expedition, work, sweep]
-    random.shuffle(random_events)
+    random_events_1 = [gold, expedition, work, shop]
+    random_events_2 = [sweep, bp, mail, lsp]
+    random.shuffle(random_events_1)
+    random.shuffle(random_events_2)
     for i in range(4):
-        random_events[i]()
+        random_events_1[i]()
+    for i in range(4):
+        random_events_2[i]()
     daily(True)
-    bp()
+    if datetime.today().weekday() == 0:
+        armada()
 
     # 结束游戏进程
     device().kill()
