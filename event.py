@@ -37,8 +37,9 @@ def login():
 # 戳老婆
 def lsp():
     for _ in range(random.randint(1, 5)):
-        find_click(Template(r"img/tpl1646118716275.png", rgb=True, record_pos=(-0.098, -0.17), resolution=(1280, 720)),
-                   timeout=10)
+        find_click(Template(r"img/tpl1646118716275.png", rgb=True, record_pos=(-0.098, -0.17), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1646228840476.png", record_pos=(-0.098, -0.168), resolution=(1280, 720)))
+        sleep(10)
 
 
 # 领金币
@@ -46,6 +47,18 @@ def gold():
     if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
         find_click(Template(r"img/tpl1645856299732.png", record_pos=(0.325, 0.248), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1645878953544.png", record_pos=(-0.195, -0.062), resolution=(1280, 720)))
+    
+
+# 取体力
+def strength():
+    if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
+        find_click(Template(r"img/tpl1645856299732.png", record_pos=(0.325, 0.248), resolution=(1280, 720)))
+    
+    find_click(Template(r"img/tpl1646229260243.png", record_pos=(-0.341, -0.066), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1646229280900.png", record_pos=(0.09, 0.156), resolution=(1280, 720)))
+    sleep(4)
+    device().key_press("`")
+    device().key_release("`")
 
 
 # 远征
@@ -62,12 +75,12 @@ def expedition():
     # 挂远征
     for _ in range(expedition_times):
         if not exists(
-                Template(r"img/tpl1645857908239.png", rgb=True, record_pos=(0.237, -0.091), resolution=(1280, 720))):
+                Template(r"img/tpl1646229453843.png", threshold=0.6, rgb=True, record_pos=(0.237, -0.088), resolution=(1280, 720))):
             # 滑动远征列表
             p1 = random_coordinate(540, 640, 960, 100)
             p2 = random_coordinate(540, 300, 960, 100)
             swipe(p1, p2)
-        if find_click(Template(r"img/tpl1645857908239.png", record_pos=(0.237, -0.091), resolution=(1280, 720))):
+        if find_click(Template(r"img/tpl1646229453843.png", threshold=0.6, rgb=True, record_pos=(0.237, -0.088), resolution=(1280, 720))):
             find_click(
                 Template(r"img/tpl1645857954430.png", rgb=True, record_pos=(0.118, 0.228), resolution=(1280, 720)))
             find_click(
@@ -118,11 +131,9 @@ def shop():
     p1 = random_coordinate(850, 600, 800, 100)
     p2 = random_coordinate(850, 300, 800, 100)
     swipe(p1, p2)
-    #     while find_click(Template(r"img/tpl1646117620315.png", rgb=True, record_pos=(0.052, 0.239), resolution=(1280, 720))):
-    #         find_click(Template(r"img/tpl1646117704059.png", threshold=0.5, rgb=True, record_pos=(0.198, 0.16), resolution=(1280, 720)))
-    #         sleep(random.uniform(0.1, 0.5))
-    #         device().key_press("I")
-    #         device().key_release("I")
+    while find_click(Template(r"img/tpl1646117620315.png", rgb=True, record_pos=(0.052, 0.239), resolution=(1280, 720))):
+        find_click(Template(r"img/tpl1646117704059.png", threshold=0.5, rgb=True, record_pos=(0.198, 0.16), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1646229023628.png", record_pos=(0.134, 0.116), resolution=(1280, 720)), timeout=1)
 
     # 每周时序通行证
     if datetime.today().weekday() == 0:
