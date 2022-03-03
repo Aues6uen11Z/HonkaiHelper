@@ -1,14 +1,17 @@
 # -*- encoding=utf8 -*-
 __author__ = "Aues6uen11Z"
 
+import ctypes
 import shutil
+import sys
 
 from airtest.cli.parser import cli_setup
 from airtest.report.report import simple_report
 
 from event import *
 
-if __name__ == '__main__':
+
+def main():
     # 清除上一次的报告
     if os.path.exists('log'):
         shutil.rmtree('log')
@@ -41,3 +44,12 @@ if __name__ == '__main__':
 
     # 生成报告
     simple_report(__file__, output='log/log.html')
+
+
+if __name__ == '__main__':
+
+    # 以管理员身份运行
+    if ctypes.windll.shell32.IsUserAnAdmin():
+        main()
+    else:
+        ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, __file__, None, 1)
