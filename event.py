@@ -36,6 +36,7 @@ def login():
 
 # 戳老婆
 def lsp():
+    back_to_main()
     for _ in range(random.randint(1, 5)):
         find_click(Template(r"img/tpl1646118716275.png", rgb=True, record_pos=(-0.098, -0.17), resolution=(1280, 720)))
         find_click(Template(r"img/tpl1646228840476.png", record_pos=(-0.098, -0.168), resolution=(1280, 720)))
@@ -75,12 +76,12 @@ def expedition():
     # 挂远征
     for _ in range(expedition_times):
         if not exists(
-                Template(r"img/tpl1646229453843.png", threshold=0.6, rgb=True, record_pos=(0.237, -0.088), resolution=(1280, 720))):
+                Template(r"img/tpl1646229453843.png", threshold=0.7, rgb=False, record_pos=(0.237, -0.088), resolution=(1280, 720))):
             # 滑动远征列表
             p1 = random_coordinate(540, 640, 960, 100)
             p2 = random_coordinate(540, 300, 960, 100)
             swipe(p1, p2)
-        if find_click(Template(r"img/tpl1646229453843.png", threshold=0.6, rgb=True, record_pos=(0.237, -0.088), resolution=(1280, 720))):
+        if find_click(Template(r"img/tpl1646229453843.png", threshold=0.7, rgb=False, record_pos=(0.237, -0.088), resolution=(1280, 720))):
             find_click(
                 Template(r"img/tpl1645857954430.png", rgb=True, record_pos=(0.118, 0.228), resolution=(1280, 720)))
             find_click(
