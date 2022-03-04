@@ -55,7 +55,7 @@ def strength():
     if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
         find_click(Template(r"img/tpl1645856299732.png", record_pos=(0.325, 0.248), resolution=(1280, 720)))
     
-    find_click(Template(r"img/tpl1646229260243.png", record_pos=(-0.341, -0.066), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1646407737965.png", record_pos=(-0.336, -0.067), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1646229280900.png", record_pos=(0.09, 0.156), resolution=(1280, 720)))
     sleep(4)
     device().key_press("`")
@@ -176,8 +176,7 @@ def sweep():
     # 打开材料活动界面
     back_to_main()
     find_click(Template(r"img/tpl1645872912915.png", record_pos=(0.36, -0.147), resolution=(1280, 720)))
-    if exists(Template(r"img/tpl1645872988411.png", rgb=True, record_pos=(-0.451, -0.121), resolution=(1280, 720))):
-        find_click(Template(r"img/tpl1645872988411.png", rgb=True, record_pos=(-0.451, -0.121), resolution=(1280, 720)))
+    random_click(64, 240, 50, 160)
     find_click(Template(r"img/tpl1645873106705.png", record_pos=(0.348, 0.119), resolution=(1280, 720)))
 
     # 材料活动一键减负

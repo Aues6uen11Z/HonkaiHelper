@@ -43,7 +43,7 @@ def main():
     device().kill()
 
     # 生成报告
-    simple_report(__file__, output='log/log.html')
+    simple_report(__file__)
 
 
 if __name__ == '__main__':
