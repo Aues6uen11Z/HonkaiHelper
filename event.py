@@ -27,6 +27,10 @@ def login():
          intervalfunc=check_update)
     random_click(590, 300, 1160, 540, times=3)
     # 签到
+    while not exists(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)), timeout=10):
+        device().key_press("`")
+        device().key_release("`")
+        sleep(random.uniform(0.3, 1.0))
     if find_click(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)), timeout=10):
         find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
     sleep(5)
