@@ -19,6 +19,14 @@ def back_to_main():
         sleep(random.uniform(0.3, 1.0))
 
 
+# 返回上一层
+def back():
+    device().key_press("`")
+    device().key_release("`")
+    sleep(random.uniform(0.3, 1.0))
+    find_click(Template(r"img/tpl1646924632727.png", rgb=True, record_pos=(-0.106, 0.048), resolution=(1280, 720)), timeout=1)
+
+
 # 刚上线的一系列操作
 def login():
     # 点击登录
@@ -27,12 +35,15 @@ def login():
          intervalfunc=check_update)
     random_click(590, 300, 1160, 540, times=3)
     # 签到
-    while not exists(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)), timeout=10):
-        device().key_press("`")
-        device().key_release("`")
-        sleep(random.uniform(0.3, 1.0))
-    if find_click(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)), timeout=10):
-        find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
+    try:
+        wait(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)), timeout=60,
+             interval=3,
+             intervalfunc=back)
+        for _ in range(2):
+            find_click(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)))
+            find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
+    except TargetNotFoundError:
+        pass
     sleep(5)
     # 关闭公告和活动
     back_to_main()
@@ -52,13 +63,13 @@ def gold():
     if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
         find_click(Template(r"img/tpl1645856299732.png", record_pos=(0.325, 0.248), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1645878953544.png", record_pos=(-0.195, -0.062), resolution=(1280, 720)))
-    
+
 
 # 取体力
 def strength():
     if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
         find_click(Template(r"img/tpl1645856299732.png", record_pos=(0.325, 0.248), resolution=(1280, 720)))
-    
+
     find_click(Template(r"img/tpl1646407737965.png", record_pos=(-0.336, -0.067), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1646229280900.png", record_pos=(0.09, 0.156), resolution=(1280, 720)))
     sleep(4)
@@ -80,12 +91,14 @@ def expedition():
     # 挂远征
     for _ in range(expedition_times):
         if not exists(
-                Template(r"img/tpl1646229453843.png", threshold=0.7, rgb=False, record_pos=(0.237, -0.088), resolution=(1280, 720))):
+                Template(r"img/tpl1646229453843.png", threshold=0.7, rgb=False, record_pos=(0.237, -0.088),
+                         resolution=(1280, 720))):
             # 滑动远征列表
             p1 = random_coordinate(540, 640, 960, 100)
             p2 = random_coordinate(540, 300, 960, 100)
             swipe(p1, p2)
-        if find_click(Template(r"img/tpl1646229453843.png", threshold=0.7, rgb=False, record_pos=(0.237, -0.088), resolution=(1280, 720))):
+        if find_click(Template(r"img/tpl1646229453843.png", threshold=0.7, rgb=False, record_pos=(0.237, -0.088),
+                               resolution=(1280, 720))):
             find_click(
                 Template(r"img/tpl1645857954430.png", rgb=True, record_pos=(0.118, 0.228), resolution=(1280, 720)))
             find_click(
@@ -136,9 +149,12 @@ def shop():
     p1 = random_coordinate(850, 600, 800, 100)
     p2 = random_coordinate(850, 300, 800, 100)
     swipe(p1, p2)
-    while find_click(Template(r"img/tpl1646117620315.png", rgb=True, record_pos=(0.052, 0.239), resolution=(1280, 720))):
-        find_click(Template(r"img/tpl1646117704059.png", threshold=0.5, rgb=True, record_pos=(0.198, 0.16), resolution=(1280, 720)))
+    while find_click(
+            Template(r"img/tpl1646117620315.png", rgb=True, record_pos=(0.052, 0.239), resolution=(1280, 720))):
+        find_click(Template(r"img/tpl1646117704059.png", threshold=0.5, rgb=True, record_pos=(0.198, 0.16),
+                            resolution=(1280, 720)))
         find_click(Template(r"img/tpl1646229023628.png", record_pos=(0.134, 0.116), resolution=(1280, 720)), timeout=1)
+        sleep(3)
 
     # 每周时序通行证
     if datetime.today().weekday() == 0:
@@ -158,17 +174,15 @@ def daily(last=False):
     # 打开每日界面
     back_to_main()
     find_click(Template(r"img/tpl1645871324073.png", record_pos=(-0.46, -0.186), resolution=(1280, 720)))
-    find_click(Template(r"img/tpl1645879474251.png", record_pos=(-0.421, -0.123), resolution=(1280, 720)), timeout=1)
-
-    while exists(Template(r"img/tpl1645871935779.png", record_pos=(0.399, -0.132), resolution=(1280, 720))):
-        random_click(dx, dy, dw, dh, 2)
-
+    find_click(Template(r"img/tpl1646925193682.png", record_pos=(-0.42, -0.103), resolution=(1280, 720)), timeout=1)
+    if find_click(Template(r"img/tpl1646925088929.png", record_pos=(0.418, -0.188), resolution=(1280, 720))):
+        find_click(Template(r"img/tpl1646924779521.png", record_pos=(-0.001, 0.144), resolution=(1280, 720)))
+    
     # 第一次领体力，第二次才全领完
     if last:
-        for _ in range(5):
-            find_click(
-                Template(r"img/tpl1645873810361.png", rgb=True, record_pos=(0.039, 0.208), resolution=(1280, 720)))
-            find_click(Template(r"img/tpl1645873777133.png", record_pos=(-0.001, 0.145), resolution=(1280, 720)))
+        find_click(
+            Template(r"img/tpl1646924829347.png", record_pos=(-0.103, 0.239), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1645873777133.png", record_pos=(-0.001, 0.145), resolution=(1280, 720)))
 
     # 返回主界面
     device().key_press("`")
@@ -200,7 +214,7 @@ def bp():
     # 打开凭证界面
     back_to_main()
     find_click(Template(r"img/tpl1645871324073.png", record_pos=(-0.46, -0.186), resolution=(1280, 720)))
-    find_click(Template(r"img/tpl1645875049434.png", record_pos=(-0.42, -0.052), resolution=(1280, 720)), timeout=1)
+    find_click(Template(r"img/tpl1646925402950.png", record_pos=(-0.419, -0.046), resolution=(1280, 720)), timeout=1)
 
     # 领每周箱子
     if datetime.today().weekday() == 0:

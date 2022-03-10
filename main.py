@@ -18,7 +18,7 @@ def main():
 
     # 启动游戏
     os.system('start ' + game_path)
-    sleep(10)
+    sleep(20)
 
     # 连接游戏
     if not cli_setup():
@@ -43,7 +43,7 @@ def main():
     device().kill()
 
     # 生成报告
-    simple_report(__file__, logfile='log/log.html')
+    simple_report(__file__, output='log/log.html')
 
 
 if __name__ == '__main__':
