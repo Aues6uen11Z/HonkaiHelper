@@ -6,8 +6,8 @@ from airtest.core.api import *
 
 # 获取随机坐标
 def random_coordinate(x, y, w, h):
-    rand_x = random.randint(x - int(w / 2 - 5), x + int(w / 2 - 5))
-    rand_y = random.randint(y - int(h / 2 - 5), y + int(h / 2 - 5))
+    rand_x = random.randint(x - int(w / 2 - 10), x + int(w / 2 - 10))
+    rand_y = random.randint(y - int(h / 2 - 10), y + int(h / 2 - 10))
     return rand_x, rand_y
 
 

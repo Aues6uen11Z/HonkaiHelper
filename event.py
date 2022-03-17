@@ -8,15 +8,21 @@ from config import *
 def check_update():
     if exists(Template(r"img/tpl1646114198037.png", record_pos=(0.002, -0.129), resolution=(1277, 720))):
         find_click(Template(r"img/tpl1646114248108.png", record_pos=(0.0, 0.116), resolution=(1277, 720)))
-        find_click(Template(r"img/tpl1646114570699.png", record_pos=(0.0, 0.048), resolution=(1277, 720)), timeout=120)
+        find_click(Template(r"img/tpl1646114570699.png", record_pos=(0.0, 0.048), resolution=(1277, 720)), timeout=1200)
 
 
 # 回到主界面
 def back_to_main():
-    while not exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
-        device().key_press("`")
-        device().key_release("`")
-        sleep(random.uniform(0.3, 1.0))
+    while True:
+        if exists(Template(r"img/tpl1645854690653.png", record_pos=(0.23, 0.076), resolution=(1280, 720))):
+            break
+        elif exists(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720))):
+            find_click(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)))
+            find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
+        else:
+            device().key_press("`")
+            device().key_release("`")
+        sleep(random.uniform(0.5, 1.0))
 
 
 # 返回上一层
@@ -30,7 +36,7 @@ def back():
 # 刚上线的一系列操作
 def login():
     # 点击登录
-    wait(Template(r"img/tpl1645854935043.png", record_pos=(0.407, 0.234), resolution=(1280, 720)), timeout=120,
+    wait(Template(r"img/tpl1645854935043.png", record_pos=(0.407, 0.234), resolution=(1280, 720)), timeout=1200,
          interval=3,
          intervalfunc=check_update)
     random_click(590, 300, 1160, 540, times=3)
@@ -44,7 +50,7 @@ def login():
             find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
     except TargetNotFoundError:
         pass
-    sleep(5)
+    sleep(10)
     # 关闭公告和活动
     back_to_main()
 
@@ -134,7 +140,7 @@ def work():
     for _ in range(2):
         device().key_press("`")
         device().key_release("`")
-        sleep(1)
+        sleep(1.5)
 
 
 # 商店必买品
@@ -174,7 +180,7 @@ def daily(last=False):
     # 打开每日界面
     back_to_main()
     find_click(Template(r"img/tpl1645871324073.png", record_pos=(-0.46, -0.186), resolution=(1280, 720)))
-    find_click(Template(r"img/tpl1646925193682.png", record_pos=(-0.42, -0.103), resolution=(1280, 720)), timeout=1)
+    random_click(100, 260, 180, 60)
     if find_click(Template(r"img/tpl1646925088929.png", record_pos=(0.418, -0.188), resolution=(1280, 720))):
         find_click(Template(r"img/tpl1646924779521.png", record_pos=(-0.001, 0.144), resolution=(1280, 720)))
     
@@ -193,7 +199,7 @@ def daily(last=False):
 def sweep():
     # 打开材料活动界面
     back_to_main()
-    find_click(Template(r"img/tpl1645872912915.png", record_pos=(0.36, -0.147), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1647269398565.png", record_pos=(0.358, -0.145), resolution=(1280, 720)))
     random_click(64, 240, 50, 160)
     find_click(Template(r"img/tpl1645873106705.png", record_pos=(0.348, 0.119), resolution=(1280, 720)))
 
@@ -214,11 +220,11 @@ def bp():
     # 打开凭证界面
     back_to_main()
     find_click(Template(r"img/tpl1645871324073.png", record_pos=(-0.46, -0.186), resolution=(1280, 720)))
-    find_click(Template(r"img/tpl1646925402950.png", record_pos=(-0.419, -0.046), resolution=(1280, 720)), timeout=1)
+    random_click(100, 353, 180, 60)
 
     # 领每周箱子
     if datetime.today().weekday() == 0:
-        find_click(Template(r"img/tpl1645874581457.png", record_pos=(-0.42, 0.216), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1647269720839.png", record_pos=(0.334, 0.202), resolution=(1280, 720)))
         find_click(Template(r"img/tpl1646114916091.png", record_pos=(-0.136, 0.115), resolution=(1277, 720)), timeout=1)
         find_click(Template(r"img/tpl1645874627052.png", record_pos=(0.0, 0.144), resolution=(1280, 720)))
         if find_click(Template(r"img/tpl1646114953123.png", record_pos=(0.138, 0.219), resolution=(1277, 720)),
