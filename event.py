@@ -78,7 +78,7 @@ def strength():
 
     find_click(Template(r"img/tpl1646407737965.png", record_pos=(-0.336, -0.067), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1646229280900.png", record_pos=(0.09, 0.156), resolution=(1280, 720)))
-    sleep(4)
+    sleep(5)
     device().key_press("`")
     device().key_release("`")
 
@@ -193,6 +193,7 @@ def daily(last=False):
     # 返回主界面
     device().key_press("`")
     device().key_release("`")
+    back_to_main()
 
 
 # 一键减负
@@ -213,6 +214,7 @@ def sweep():
         device().key_press("`")
         device().key_release("`")
         sleep(1)
+    back_to_main()
 
 
 # 领凭证奖励
@@ -241,6 +243,7 @@ def bp():
     sleep(1)
     device().key_press("`")
     device().key_release("`")
+    back_to_main()
 
 
 # 领邮件
@@ -256,6 +259,7 @@ def mail():
     # 返回主界面
     device().key_press("`")
     device().key_release("`")
+    back_to_main()
 
 
 # 领舰团每周贡献奖励
@@ -282,3 +286,4 @@ def armada():
         device().key_press("`")
         device().key_release("`")
         sleep(1)
+    back_to_main()
