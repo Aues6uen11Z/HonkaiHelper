@@ -2,7 +2,7 @@
 game_path = 'D:/Games/"Honkai Impact 3"/Games/BH3.exe'
 
 # 最大远征次数
-expedition_times = 8
+expedition_times = 7
 
 # 打工点击位置
 wx, wy, ww, wh = 975, 100, 260, 80

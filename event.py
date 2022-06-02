@@ -180,7 +180,7 @@ def daily(last=False):
     # 打开每日界面
     back_to_main()
     find_click(Template(r"img/tpl1645871324073.png", record_pos=(-0.46, -0.186), resolution=(1280, 720)))
-    random_click(100, 260, 180, 60)
+    random_click(100, 170, 180, 60)
     if find_click(Template(r"img/tpl1646925088929.png", record_pos=(0.418, -0.188), resolution=(1280, 720))):
         find_click(Template(r"img/tpl1646924779521.png", record_pos=(-0.001, 0.144), resolution=(1280, 720)))
     
@@ -222,7 +222,7 @@ def bp():
     # 打开凭证界面
     back_to_main()
     find_click(Template(r"img/tpl1645871324073.png", record_pos=(-0.46, -0.186), resolution=(1280, 720)))
-    random_click(100, 353, 180, 60)
+    random_click(100, 260, 180, 60)
 
     # 领每周箱子
     if datetime.today().weekday() == 0:
