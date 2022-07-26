@@ -205,7 +205,7 @@ def sweep():
     find_click(Template(r"img/tpl1645873106705.png", record_pos=(0.348, 0.119), resolution=(1280, 720)))
 
     # 材料活动一键减负
-    find_click(Template(r"img/tpl1645873175982.png", record_pos=(0.452, 0.241), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1658801383239.png", record_pos=(0.411, 0.241), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1645873249602.png", record_pos=(-0.001, 0.131), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1645873276874.png", record_pos=(-0.001, 0.145), resolution=(1280, 720)))
 
@@ -286,4 +286,18 @@ def armada():
         device().key_press("`")
         device().key_release("`")
         sleep(1)
+    back_to_main()
+    
+
+# 领吼姆秘宝
+def homu_box():
+    back_to_main()
+    
+    find_click(Template(r"img/tpl1658757306012.png", record_pos=(-0.428, 0.084), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1658757346684.png", record_pos=(-0.409, -0.123), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1658757375611.png", record_pos=(-0.409, -0.007), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1658757404980.png", record_pos=(-0.206, 0.042), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1658757433740.png", record_pos=(0.0, 0.18), resolution=(1280, 720)))
+    find_click(Template(r"img/tpl1658757469148.png", record_pos=(-0.001, 0.145), resolution=(1280, 720)))
+    
     back_to_main()

@@ -1,6 +1,3 @@
-# -*- encoding=utf8 -*-
-__author__ = "Aues6uen11Z"
-
 import ctypes
 import shutil
 import sys
@@ -37,7 +34,10 @@ def main():
         random_events_2[i]()
     daily(True)
     if datetime.today().weekday() == 0:
-        armada()
+        random_events_3 = [armada, homu_box]
+        random.shuffle(random_events_3)
+        for i in range(2):
+            random_events_3[i]()
 
     # 结束游戏进程
     device().kill()
@@ -53,3 +53,4 @@ if __name__ == '__main__':
         main()
     else:
         ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, __file__, None, 1)
+
