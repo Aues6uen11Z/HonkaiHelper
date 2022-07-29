@@ -2,6 +2,7 @@ from datetime import datetime
 
 from anti_detection import *
 from config import *
+from fight import *
 
 
 # 登录前有可能要更新数据
@@ -201,7 +202,7 @@ def sweep():
     # 打开材料活动界面
     back_to_main()
     find_click(Template(r"img/tpl1647269398565.png", record_pos=(0.358, -0.145), resolution=(1280, 720)))
-    random_click(64, 240, 50, 160)
+    random_click(ax, ay, aw, ah)
     find_click(Template(r"img/tpl1645873106705.png", record_pos=(0.348, 0.119), resolution=(1280, 720)))
 
     # 材料活动一键减负
@@ -300,4 +301,55 @@ def homu_box():
     find_click(Template(r"img/tpl1658757433740.png", record_pos=(0.0, 0.18), resolution=(1280, 720)))
     find_click(Template(r"img/tpl1658757469148.png", record_pos=(-0.001, 0.145), resolution=(1280, 720)))
     
+    back_to_main()
+
+
+# 万象虚境肝锻造材料
+# index: 虚境序号   ticket: 是否使用时序通行证
+def xujing(index=3, ticket=True):
+    back_to_main()
+    find_click(Template(r"img/tpl1647269398565.png", record_pos=(0.358, -0.145), resolution=(1280, 720)))
+    random_click(tx, ty, tw, th)
+    find_click(Template(r"img/tpl1659094973381.png", record_pos=(0.14, 0.007), resolution=(1280, 720)))
+
+    if index == 1:
+        find_click(Template(r"img/tpl1659095822710.png", record_pos=(-0.349, 0.001), resolution=(1280, 720)))
+    elif index == 2:
+        find_click(Template(r"img/tpl1659095856742.png", record_pos=(-0.116, 0.001), resolution=(1280, 720)))
+    elif index == 3:
+        find_click(Template(r"img/tpl1659095893750.png", record_pos=(0.116, 0.001), resolution=(1280, 720)))
+    else:
+        find_click(Template(r"img/tpl1659095915789.png", record_pos=(0.349, 0.001), resolution=(1280, 720)))
+    # 选第2关
+    p1 = random_coordinate(400, 200, 450, 100)
+    p2 = random_coordinate(400, 800, 450, 100)
+    swipe(p1, p2)
+    random_click(sx, sy, sw, sh)
+
+    # 进入战斗
+    if datetime.today().weekday() in [4, 5, 6]:
+        repeat = 2
+    else:
+        repeat = 1
+    for _ in range(repeat):
+        find_click(Template(r"img/tpl1659098326087.png", record_pos=(0.373, 0.245), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659098496079.png", record_pos=(0.363, 0.245), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659098774047.png", record_pos=(0.373, 0.237), resolution=(1280, 720)))
+        sleep(5)
+        combo()
+        while exists(Template(r"img/tpl1659103297418.png", record_pos=(-0.46, -0.256), resolution=(1280, 720))):
+            action()
+
+        sleep(random.randint(6, 9))
+        random_click(365, 365, 500, 500)
+        if ticket:
+            find_click(Template(r"img/tpl1659103179194.png", record_pos=(0.154, 0.204), resolution=(1280, 720)))
+        else:
+            find_click(Template(r"img/tpl1659103757994.png", record_pos=(-0.154, 0.205), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659103209330.png", record_pos=(-0.001, 0.144), resolution=(1280, 720)))
+        
+    for _ in range(3):
+        device().key_press("`")
+        device().key_release("`")
+        sleep(1)
     back_to_main()

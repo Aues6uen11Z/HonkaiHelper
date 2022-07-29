@@ -25,12 +25,12 @@ def main():
     login()
     daily(False)
     random_events_1 = [gold, expedition, work, shop, strength]
-    random_events_2 = [sweep, bp, mail, lsp]
+    random_events_2 = [sweep, bp, mail, lsp, xujing]
     random.shuffle(random_events_1)
     random.shuffle(random_events_2)
     for i in range(5):
         random_events_1[i]()
-    for i in range(4):
+    for i in range(5):
         random_events_2[i]()
     daily(True)
     if datetime.today().weekday() == 0:
