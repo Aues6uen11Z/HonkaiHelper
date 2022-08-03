@@ -30,7 +30,7 @@ def weapon(choose=False):
 # 分支攻击
 def branch():
     device().key_press("J")
-    sleep(random.uniform(1.5, 3))
+    sleep(random.uniform(2, 3))
     device().key_release("J")
 
 
@@ -66,7 +66,7 @@ def combo():
     branch()
     sleep(random.uniform(0.3, 1.0))
     A()
-    sleep(random.uniform(4.0, 6.0))
+    sleep(random.uniform(1.0, 3.0))
     weapon()
     sleep(random.uniform(1.0, 2.0))
     B()

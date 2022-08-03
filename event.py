@@ -349,7 +349,7 @@ def xujing(index=3, ticket=True):
         find_click(Template(r"img/tpl1659103209330.png", record_pos=(-0.001, 0.144), resolution=(1280, 720)))
         
     for _ in range(3):
+        sleep(1)
         device().key_press("`")
         device().key_release("`")
-        sleep(1)
     back_to_main()
