@@ -41,16 +41,7 @@ def login():
          interval=3,
          intervalfunc=check_update)
     random_click(590, 300, 1160, 540, times=3)
-    # 签到
-    try:
-        wait(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)), timeout=60,
-             interval=3,
-             intervalfunc=back)
-        for _ in range(2):
-            find_click(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)))
-            find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
-    except TargetNotFoundError:
-        pass
+
     sleep(10)
     # 关闭公告和活动
     back_to_main()
@@ -138,10 +129,11 @@ def work():
 
     # 返回家园界面
     find_click(Template(r"img/tpl1645868275668.png", rgb=True, record_pos=(0.181, 0.246), resolution=(1280, 720)))
+    sleep(3)
     for _ in range(2):
         device().key_press("`")
         device().key_release("`")
-        sleep(1.5)
+        sleep(0.5)
 
 
 # 商店必买品
