@@ -37,7 +37,7 @@ def branch():
 # 随机移动
 def move():
     orientation = ["W", "A", "S", "D"]
-    index = random.randint(1, 4)
+    index = random.randint(0, 3)
     device().key_press(orientation[index])
     sleep(random.uniform(0.5, 1))
     device().key_release(orientation[index])
