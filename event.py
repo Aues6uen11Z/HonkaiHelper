@@ -305,13 +305,13 @@ def xujing(index=3, ticket=True):
     find_click(Template(r"img/tpl1659094973381.png", record_pos=(0.14, 0.007), resolution=(1280, 720)))
 
     if index == 1:
-        find_click(Template(r"img/tpl1659095822710.png", record_pos=(-0.349, 0.001), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659095822710.png", rgb=True, record_pos=(-0.349, 0.001), resolution=(1280, 720)))
     elif index == 2:
-        find_click(Template(r"img/tpl1659095856742.png", record_pos=(-0.116, 0.001), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659095856742.png", rgb=True, record_pos=(-0.116, 0.001), resolution=(1280, 720)))
     elif index == 3:
-        find_click(Template(r"img/tpl1659095893750.png", record_pos=(0.116, 0.001), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659095893750.png", rgb=True, record_pos=(0.116, 0.001), resolution=(1280, 720)))
     else:
-        find_click(Template(r"img/tpl1659095915789.png", record_pos=(0.349, 0.001), resolution=(1280, 720)))
+        find_click(Template(r"img/tpl1659095915789.png", rgb=True, record_pos=(0.349, 0.001), resolution=(1280, 720)))
     # 选第2关
     p1 = random_coordinate(400, 200, 450, 100)
     p2 = random_coordinate(400, 800, 450, 100)
@@ -328,9 +328,11 @@ def xujing(index=3, ticket=True):
         find_click(Template(r"img/tpl1659098496079.png", record_pos=(0.363, 0.245), resolution=(1280, 720)))
         find_click(Template(r"img/tpl1659098774047.png", record_pos=(0.373, 0.237), resolution=(1280, 720)))
         sleep(5)
-        combo()
+        # 爱律射箭流
+        device().key_press("J")
         while exists(Template(r"img/tpl1659103297418.png", record_pos=(-0.46, -0.256), resolution=(1280, 720))):
-            action()
+            sleep(5)
+        device().key_release("J")
 
         sleep(random.randint(6, 9))
         random_click(365, 365, 500, 500)
