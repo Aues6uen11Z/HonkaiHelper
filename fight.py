@@ -59,17 +59,3 @@ def action():
     atk_list = [A, B, weapon, branch, move]
     probabilities = [0.8, 0, 0, 0.1, 0.1]
     random_pick(atk_list, probabilities)()
-
-
-# 黑希连招
-def combo():
-    branch()
-    sleep(random.uniform(0.3, 1.0))
-    A()
-    sleep(random.uniform(1.0, 3.0))
-    weapon()
-    sleep(random.uniform(1.0, 2.0))
-    B()
-    sleep(random.uniform(1.0, 1.5))
-    A()
-

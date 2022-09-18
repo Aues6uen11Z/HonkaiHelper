@@ -334,6 +334,10 @@ def xujing(index=3, ticket=True):
             sleep(5)
         device().key_release("J")
 
+        # 自定义动作
+        #while exists(Template(r"img/tpl1659103297418.png", record_pos=(-0.46, -0.256), resolution=(1280, 720))):
+        #    action()
+
         sleep(random.randint(6, 9))
         random_click(365, 365, 500, 500)
         if ticket:
