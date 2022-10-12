@@ -20,6 +20,8 @@ def back_to_main():
         elif exists(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720))):
             find_click(Template(r"img/tpl1645853249505.png", record_pos=(0.083, 0.248), resolution=(1280, 720)))
             find_click(Template(r"img/tpl1645854410174.png", record_pos=(-0.001, 0.134), resolution=(1280, 720)))
+        elif exists(Template(r"img/tpl1645854935043.png", record_pos=(0.407, 0.234), resolution=(1280, 720))):
+            random_click(590, 300, 1160, 540, times=3)
         else:
             device().key_press("`")
             device().key_release("`")
@@ -298,7 +300,7 @@ def homu_box():
 
 # 万象虚境肝锻造材料
 # index: 虚境序号   ticket: 是否使用时序通行证
-def xujing(index=3, ticket=True):
+def xujing(index=3, ticket=False):
     back_to_main()
     find_click(Template(r"img/tpl1647269398565.png", record_pos=(0.358, -0.145), resolution=(1280, 720)))
     random_click(tx, ty, tw, th)
