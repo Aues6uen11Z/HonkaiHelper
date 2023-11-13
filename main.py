@@ -1,11 +1,18 @@
 import ctypes
+import os
 import shutil
 import sys
 
-from airtest.cli.parser import cli_setup
-from airtest.report.report import simple_report
+from zafkiel import API, simple_report
 
-from event import *
+import config
+from tasks.armada import Armada
+from tasks.dorm_bonus import DormBonus
+from tasks.errand import Errand
+from tasks.expedition import Expeditions
+from tasks.login import Login
+from tasks.mission import Missions
+from tasks.sweep import Sweep
 
 
 def main():
@@ -13,44 +20,27 @@ def main():
     if os.path.exists('log'):
         shutil.rmtree('log')
 
-    # 启动游戏
-    os.system('start ' + game_path)
-    sleep(20)
-
-    # 连接游戏
-    if not cli_setup():
-        auto_setup(__file__, logdir=True, devices=["Windows:///?title=崩坏3", ])
-
-    # 做日常
-    login()
-    daily(False)
-    random_events_1 = [gold, expedition, work, shop, strength]
-    random_events_2 = [sweep, bp, mail, lsp, xujing]
-    random.shuffle(random_events_1)
-    random.shuffle(random_events_2)
-    for i in range(5):
-        random_events_1[i]()
-    for i in range(5):
-        random_events_2[i]()
-    daily(True)
-    if datetime.today().weekday() == 0:
-        random_events_3 = [armada, homu_box]
-        random.shuffle(random_events_3)
-        for i in range(2):
-            random_events_3[i]()
+    # 日常
+    Login().app_start()
+    Missions().run()
+    DormBonus().claim_stamina()
+    DormBonus().claim_gold()
+    Errand().run()
+    Expeditions().run()
+    Armada().run()
+    Sweep().run()
+    Missions().run()
 
     # 结束游戏进程
-    device().kill()
+    API().stop_app()
 
     # 生成报告
     simple_report(__file__, output='log/log.html')
 
 
 if __name__ == '__main__':
-
     # 以管理员身份运行
     if ctypes.windll.shell32.IsUserAnAdmin():
         main()
     else:
         ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, __file__, None, 1)
-

@@ -138,12 +138,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-/.idea/.gitignore
-/.idea/HonkaiHelper.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/vcs.xml
-/log
-/test.py
+.idea/
+log/
+test.py
+tasks/**/*.png
