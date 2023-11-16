@@ -50,9 +50,11 @@ class PopupHandler(API):
     # 深渊结算弹窗
     @run_until_true
     def handle_abyss_settle(self):
-        rec_template = Template(r"ABYSS_SETTLE.png", (0.003, -0.156), Keyword('结算'))
-        touch_template = Template(r"POPUP_MARGIN.png", (0.467, -0.252))
-        return self.find_click(rec_template, touch_template, ocr_mode=1, blind=True)
+        rec_template = Template(r"ABYSS_SETTLE.png", (-0.384, -0.005))
+        if is_color_similar(rec_template.image, crop(self.screenshot(), rec_template.area)):
+            self.touch(Template(r"POPUP_MARGIN.png", (0.467, -0.252)), blind=True)
+            return True
+        return False
 
 
 popup_handler = PopupHandler()
