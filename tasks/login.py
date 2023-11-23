@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 from zafkiel import Template, logger, Config
+from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
 from tasks.base.popup import popup_list, popup_handler
@@ -50,5 +51,5 @@ class Login(UI):
         if self.exists(Template(r"LOGIN_UPDATE.png", (0.002, -0.129))):
             self.find_click(Template(r"DOWNLOAD_CONFIRM.png", (0.0, 0.116)))
             logger.info('游戏更新中')
-            if self.find_click(Template(r"DOWNLOAD_DONE.png", (0.0, 0.048)), timeout=1200):
+            if self.find_click(Template(r"DOWNLOAD_DONE.png", (0.0, 0.048), Keyword('确定')), timeout=1200):
                 logger.info('游戏更新完成')
