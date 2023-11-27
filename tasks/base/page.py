@@ -9,7 +9,7 @@ TPL_HOME_BUTTON = Template(r"HOME_BUTTON.png", (-0.298, -0.257), Keyword('主菜
 TPL_CONFIRM_BUTTON = Template(r"CONFIRM_BUTTON.png", (0.0, 0.144), Keyword('确定'))
 
 # 主界面
-page_main = Page(Template(r"MAIN_GOTO_BATTLE.png", (0.421, -0.004), Keyword('出击')))
+page_main = Page(Template(r"MAIN_FLAG.png", (0.281, 0.043)))
 
 # 家园界面
 page_dorm = Page(Template(r"DORM_STAMINA.png", (-0.34, -0.059)))

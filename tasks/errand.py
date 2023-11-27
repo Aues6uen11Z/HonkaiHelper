@@ -29,7 +29,7 @@ class Errand(UI):
                     break
 
             self.touch(enter_button)
-            self.find_click(Template(r"ERRAND_DISPATCH.png", (0.18, 0.246)))
+            self.find_click(Template(r"ERRAND_DISPATCH.png", (0.18, 0.246), Keyword('一键派遣')))
 
             # 检查打工需要的特性是否满足
             screen = self.screenshot()
@@ -44,7 +44,7 @@ class Errand(UI):
                 logger.info('完成打工派遣')
                 break
 
-            self.find_click(Template(r"ERRAND_START.png", (0.388, 0.245)))
+            self.find_click(Template(r"ERRAND_START.png", (0.388, 0.245), Keyword('开始打工')))
 
     # 领前一天打工奖励
     def claim_rewards(self):

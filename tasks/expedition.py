@@ -32,8 +32,8 @@ class Expeditions(UI):
             miss_count.reset()
             if start_button:
                 self.touch(start_button)
-            self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227)))
-            self.find_click(Template(r"DISPATCH_CONFIRM.png", (0.362, 0.227)))
+            self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227), Keyword('一键派遣')))
+            self.find_click(Template(r"DISPATCH_CONFIRM.png", (0.362, 0.227), Keyword('确定探险')))
             if ocr_fail.ocr_match_keyword(self.screenshot(), ocr_fail.button.keyword, mode=1):
                 self.find_click(TPL_RETURN_BUTTON, times=2)
                 logger.info('完成远征派遣')
