@@ -1,4 +1,5 @@
 from zafkiel import Template, logger
+from zafkiel.decorator import run_until_true
 from zafkiel.ocr import DigitCounter, Keyword
 from zafkiel.ui import UI
 
@@ -19,7 +20,7 @@ class Armada(UI):
     # 委托材料不够
     def _handel_lack(self):
         while True:
-            if self.exists(Template(r"COMMISSION_SUBMIT.png", (0.237, 0.224), rgb=True)):
+            if self.exists(Template(r"COMMISSION_SUBMIT.png", (0.237, 0.224), Keyword('提交'), rgb=True)):
                 break
 
             if self.find_click(Template(r"COMMISSION_MAX.png", (0.002, 0.161), Keyword('最大'))):
@@ -27,6 +28,18 @@ class Armada(UI):
                 continue
 
             self.touch(Template(r"COMMISSION_LACK.png", (-0.398, -0.103)), blind=True)
+
+    # 申请新委托
+    @run_until_true
+    def _apply_new(self):
+        ocr = DigitCounter(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225)))
+        if ocr.ocr_single_line(self.screenshot())[0] == 0:
+            self.find_click(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225)), blind=True)
+            self.find_click(Template(r"COMMISSION_REQUEST_FLAG.png", (-0.384, -0.184), Keyword('申请新委托')),
+                            Template(r"COMMISSION_ACCEPT.png", (0.375, -0.079), Keyword('接受')),
+                            times=2)
+            return True
+        return False
 
     def commission(self):
         self.ui_goto(page_commission)
@@ -38,17 +51,14 @@ class Armada(UI):
                 logger.info('提交舰团委托')
                 break
 
-            # 申请新委托
-            if self.find_click(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225), rgb=True), timeout=0):
-                self.find_click(Template(r"COMMISSION_REQUEST_FLAG.png", (-0.384, -0.184), Keyword('申请新委托')),
-                                Template(r"COMMISSION_ACCEPT.png", (0.375, -0.079), Keyword('接受')),
-                                times=2)
+            if self._apply_new():
                 continue
 
             # 提交委托
-            if self.find_click(Template(r"COMMISSION_SUBMIT.png", (0.237, 0.224), rgb=True), timeout=0):
+            if self.find_click(Template(r"COMMISSION_SUBMIT.png", (0.237, 0.224), Keyword('提交'), rgb=True),
+                               timeout=0):
                 continue
-            if self.exists(Template(r"COMMISSION_SUBMIT_LACK.png", (0.237, 0.225), rgb=True)):
+            if self.exists(Template(r"COMMISSION_SUBMIT_LACK.png", (0.237, 0.225), Keyword('提交'), rgb=True)):
                 logger.info('舰团委托材料不足，建议提前买够以加快速度')
                 self._handel_lack()
             self.find_click(Template(r"COMMISSION_SUBMIT_CONFIRM.png", (0.135, 0.159), Keyword('提交委托')),
