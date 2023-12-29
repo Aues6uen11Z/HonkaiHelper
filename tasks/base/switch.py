@@ -5,12 +5,15 @@ from zafkiel.ui import Switch
 # BP任务界面
 TPL_BP_MISSIONS_TAB = Template(r"BP_MISSIONS_TAB.png", (0.449, 0.24))
 TPL_BP_REWARDS_TAB = Template(r"BP_REWARDS_TAB.png", (-0.273, -0.044))
+TPL_BP_SHOP_TAB = Template(r"BP_SHOP_TAB.png", (-0.391, 0.034), Keyword('作战工坊'))
 TPL_GOTO_BP_MISSIONS = Template(r"GOTO_BP_MISSIONS.png", (-0.417, -0.171), Keyword('作战任务'))
 TPL_GOTO_BP_REWARDS = Template(r"GOTO_BP_REWARDS.png", (-0.42, -0.102), Keyword('作战奖励'))
+TPL_GOTO_BP_SHOP = Template(r"GOTO_BP_SHOP.png", (-0.418, -0.029), Keyword('作战商店'))
 
 switch_missions = Switch('switch_missions', is_selector=True)
 switch_missions.add_state('BP_MISSIONS_TAB', TPL_BP_MISSIONS_TAB, TPL_GOTO_BP_MISSIONS)
 switch_missions.add_state('BP_REWARDS_TAB', TPL_BP_REWARDS_TAB, TPL_GOTO_BP_REWARDS)
+switch_missions.add_state('BP_SHOP_TAB', TPL_BP_SHOP_TAB, TPL_GOTO_BP_SHOP)
 
 
 # 远征界面
