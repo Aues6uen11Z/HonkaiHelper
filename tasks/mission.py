@@ -52,7 +52,6 @@ class Missions(UI):
             self.find_click(TPL_CONFIRM_BUTTON)
 
     def run(self):
-        self.get_popup_list(popup_list)
         self.ui_ensure(page_missions)
         self.claim_daily_rewards()
         self.claim_bp_rewards()

@@ -51,6 +51,13 @@ page_missions.link(TPL_RETURN_BUTTON,
 page_main.link(Template(r"MAIN_GOTO_MISSIONS.png", (-0.454, -0.201)),
                destination=page_missions)
 
+# 邮件界面
+page_mail = Page(Template(r"MAIL_FLAG.png", (-0.456, 0.23), Keyword('邮件数')))
+page_mail.link(TPL_RETURN_BUTTON,
+               destination=page_main)
+page_main.link(Template(r"MAIN_GOTO_MAIL.png", (-0.42, -0.039)),
+               destination=page_mail)
+
 # 远征界面
 page_expeditions = Page(Template(r"EXPEDITION_FLAG.png", (-0.363, -0.183), Keyword('今日远征可用体力')),
                         switch=switch_expeditions)
