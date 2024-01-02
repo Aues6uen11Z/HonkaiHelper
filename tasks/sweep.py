@@ -3,12 +3,12 @@ from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
 from tasks.base.page import page_battle, page_lite, TPL_CONFIRM_BUTTON
-from tasks.base.switch import TPL_BATTLE_RECOMMEND_TAB
+from tasks.base.switch import TPL_BATTLE_ATTACK_TAB
 
 
 class Sweep(UI):
     def run(self):
-        self.ui_ensure(page_battle, TPL_BATTLE_RECOMMEND_TAB)
+        self.ui_ensure(page_battle, TPL_BATTLE_ATTACK_TAB)
         self.ui_goto(page_lite)
 
         TPL_QUICK_LITE = Template(r"QUICK_LITE.png", (0.41, 0.241), Keyword('一键减负'))

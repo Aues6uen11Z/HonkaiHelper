@@ -105,5 +105,5 @@ page_lite.link(TPL_RETURN_BUTTON,
                destination=page_battle)
 page_lite.link(TPL_HOME_BUTTON,
                destination=page_main)
-page_battle.link(Template(r"BATTLE_GOTO_LITE.png", (-0.314, 0.147)),
+page_battle.link(Template(r"BATTLE_GOTO_LITE.png", (0.114, 0.147)),
                  destination=page_lite)

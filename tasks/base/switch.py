@@ -28,10 +28,10 @@ switch_expeditions.add_state('EXPEDITION_MATL_TAB', TPL_EXPEDITION_MATL_TAB, TPL
 
 
 # 作战界面
-TPL_BATTLE_RECOMMEND_TAB = Template(r"BATTLE_RECOMMEND_TAB.png", (-0.404, 0.108))
-TPL_BATTLE_ATTACK_TAB = Template(r"BATTLE_ATTACK_TAB.png", (0.393, -0.067))
-TPL_BATTLE_CHALLENGE_TAB = Template(r"BATTLE_CHALLENGE_TAB.png", (0.228, -0.077))
-TPL_BATTLE_EVENT_TAB = Template(r"BATTLE_EVENT_TAB.png", (-0.349, -0.114))
+TPL_BATTLE_RECOMMEND_TAB = Template(r"BATTLE_RECOMMEND_TAB.png", (-0.257, -0.2), rgb=True)
+TPL_BATTLE_ATTACK_TAB = Template(r"BATTLE_ATTACK_TAB.png", (-0.12, -0.201), rgb=True)
+TPL_BATTLE_CHALLENGE_TAB = Template(r"BATTLE_CHALLENGE_TAB.png", (0.023, -0.2), rgb=True)
+TPL_BATTLE_EVENT_TAB = Template(r"BATTLE_EVENT_TAB.png", (0.16, -0.199), rgb=True)
 TPL_GOTO_RECOMMEND = Template(r"GOTO_RECOMMEND.png", (-0.192, -0.202), Keyword('推荐'))
 TPL_GOTO_ATTACK = Template(r"GOTO_ATTACK.png", (-0.072, -0.202), Keyword('出击'))
 TPL_GOTO_CHALLENGE = Template(r"GOTO_CHALLENGE.png", (0.066, -0.202), Keyword('挑战'))
