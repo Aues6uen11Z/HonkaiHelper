@@ -13,7 +13,7 @@ class Expeditions(UI):
         ocr_dispatch = Ocr(Template(r"START_EXPEDITION.png", (0.239, 0.057), Keyword('开始远征')))
         ocr_fail = Ocr(Template(r"DISPATCH_FAIL.png", (0.207, -0.004), Keyword('派遣')))
 
-        miss_count = Timer(3, 10).start()  # 防止没识别到“无法派遣”黑条进入死循环
+        miss_count = Timer(3, 5).start()  # 防止没识别到“无法派遣”黑条进入死循环
         while True:
             screen = self.screenshot()
             start_button = None
@@ -31,7 +31,8 @@ class Expeditions(UI):
 
             miss_count.reset()
             if start_button:
-                self.touch(start_button)
+                start_button = (start_button[0]+start_button[2])/2, (start_button[1]+start_button[3])/2
+                self.touch(start_button, v_name='START_EXPEDITION')
             self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227), Keyword('一键派遣')))
             self.find_click(Template(r"DISPATCH_CONFIRM.png", (0.362, 0.227), Keyword('确定探险')))
             if ocr_fail.ocr_match_keyword(self.screenshot(), ocr_fail.button.keyword, mode=1):

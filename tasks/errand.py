@@ -14,6 +14,7 @@ class Errand(UI):
         TPL_ERRAND_QUALITY = Template(r"ERRAND_QUALITY.png", (-0.305, 0.03))
         target_idx = 0  # 选第几个打工，由于我的号没不符合条件的情况，所以这个功能没测试
 
+        # todo:终止循环条件
         while True:
             screen = self.screenshot()
             enter_button = None
@@ -27,8 +28,10 @@ class Errand(UI):
                 elif ocr.ocr_match_keyword(screen, Keyword('剩余'), mode=1):  # 没有可派遣的打工
                     logger.info('完成打工派遣')
                     break
+            if enter_button:
+                enter_button = (enter_button[0]+enter_button[2])/2, (enter_button[1]+enter_button[3])/2
+                self.touch(enter_button, v_name='ERRAND_LIST')
 
-            self.touch(enter_button)
             self.find_click(Template(r"ERRAND_DISPATCH.png", (0.18, 0.246), Keyword('一键派遣')))
 
             # 检查打工需要的特性是否满足

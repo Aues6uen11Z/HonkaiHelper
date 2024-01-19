@@ -1,9 +1,9 @@
 from zafkiel import Template, logger
-from zafkiel.ocr import Digit
+from zafkiel.ocr import Digit, Keyword
 from zafkiel.ui import UI
 
 from tasks.base.page import page_missions, TPL_CONFIRM_BUTTON
-from tasks.base.popup import popup_list
+from tasks.base.popup import popup_list, popup_handler
 from tasks.base.switch import TPL_BP_MISSIONS_TAB, TPL_BP_REWARDS_TAB
 
 
@@ -11,13 +11,15 @@ class Missions(UI):
     def claim_bp_rewards(self):
         self.ui_goto(page_missions, TPL_BP_REWARDS_TAB)
         # # 领每周箱子，todo:写进配置，每周领过一次后不再识别；改逻辑
-        # while True:
-        #     if self.find_click(Template(r"BP_CHEST.png", record_pos=(0.334, 0.203))):
-        #         self.find_click(Template(r"BP_CHEST_CLAIM.png", record_pos=(-0.134, 0.12), keyword=Keyword('领取')),
-        #                         timeout=0)
-        #         self.find_click(TPL_CONFIRM, times=2)
-        #     popup_handler.handle_bp_reward()
-        #     self.ui_additional()
+        # if self.find_click(Template(r"BP_CHEST.png", (0.334, 0.203))):
+        #     while True:
+        #         if self.find_click(Template(r"BP_CHEST_CLAIM.png", (-0.134, 0.12), Keyword('领取')), timeout=0):
+        #             self.sleep(2)
+        #         self.find_click(TPL_CONFIRM_BUTTON)
+        #         popup_handler.handle_bp_reward()
+        #
+        # self.ui_additional()
+
         # 领凭证奖励
         screen = self.screenshot()
         ocr_current_level = Digit(Template(r"CURRENT_BP_LEVEL.png", (-0.29, -0.178)))
@@ -52,6 +54,7 @@ class Missions(UI):
             self.find_click(TPL_CONFIRM_BUTTON)
 
     def run(self):
+        # self.get_popup_list(popup_list)
         self.ui_ensure(page_missions)
         self.claim_daily_rewards()
         self.claim_bp_rewards()

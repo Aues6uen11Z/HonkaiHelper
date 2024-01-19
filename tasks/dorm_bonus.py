@@ -14,8 +14,8 @@ class DormBonus(UI):
             if ocr.ocr_single_line(self.screenshot()) > 0:
                 self.find_click(Template(r"CLAIM_STAMINA.png", (0.092, 0.156)), times=2)
                 logger.info('领取宿舍体力')
-            else:
-                self.find_click(Template(r"DORM_STAMINA_CLOSE.png", (0.349, -0.181)), timeout=0)
+                return
+        self.find_click(Template(r"DORM_STAMINA_CLOSE.png", (0.349, -0.181)))
 
     def claim_gold(self):
         self.ui_ensure(page_dorm)
