@@ -26,7 +26,7 @@ class Errand(UI):
                 if len(boxed_results) < 5:  # 列表没加载完全
                     continue
                 elif ocr.ocr_match_keyword(screen, Keyword('剩余'), mode=1):  # 没有可派遣的打工
-                    logger.info('完成打工派遣')
+                    logger.info('Errand dispatch completed')
                     break
             if enter_button:
                 enter_button = (enter_button[0]+enter_button[2])/2, (enter_button[1]+enter_button[3])/2
@@ -44,7 +44,7 @@ class Errand(UI):
             # 检查饭团是否足够
             if digit_ocr.ocr_single_line(screen)[1] < 0:
                 self.find_click(TPL_RETURN_BUTTON)
-                logger.info('完成打工派遣')
+                logger.info('Errand dispatch completed')
                 break
 
             self.find_click(Template(r"ERRAND_START.png", (0.388, 0.245), Keyword('开始打工')))
@@ -54,7 +54,7 @@ class Errand(UI):
         self.find_click(Template(r"GET_ERRAND_LIST.png", (0.48, -0.001)), timeout=0)
         while self.find_click(Template(r"ERRAND_COMPLETE.png", (0.38, -0.248), Keyword('完成'))):
             self.find_click(TPL_CONFIRM_BUTTON)
-        logger.info('领取打工奖励')
+        logger.info('Errand rewards claim completed')
 
     def run(self):
         self.ui_ensure(page_errands)

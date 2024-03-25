@@ -24,21 +24,27 @@ class Missions(UI):
         screen = self.screenshot()
         ocr_current_level = Digit(Template(r"CURRENT_BP_LEVEL.png", (-0.29, -0.178)))
         current_level = ocr_current_level.ocr_single_line(screen)
+        logger.info(f'Current BP level: {current_level}')
+
         ocr_reward_level = Digit(Template(r"REWARD_BP_LEVEL.png", (-0.182, -0.13)))
         reward_level = ocr_reward_level.ocr_single_line(screen)
+        logger.info(f'BP reward level: {reward_level}')
+
         if current_level >= reward_level:
             if self.touch(Template(r"BP_REWARD.png", (-0.179, -0.054)), blind=True):
-                logger.info('领取凭证奖励')
+                popup_handler.handle_bp_reward()
                 self.find_click(Template(r"BP_REWARD_CONFIRM.png", (0.141, 0.173)))
+                logger.info('BP rewards claim completed')
 
     def claim_daily_rewards(self):
         self.ui_goto(page_missions, TPL_BP_MISSIONS_TAB)
         if self.find_click(Template(r"QUICK_CLAIM.png", (0.418, -0.187), rgb=True)):
-            logger.info('领取每日奖励')
             self.find_click(TPL_CONFIRM_BUTTON)
+            logger.info('Daily rewards claim completed')
 
         ocr = Digit(Template(r"DAILY_BP.png", (-0.274, 0.23)))
         daily_bp = ocr.ocr_single_line(self.screenshot())
+        logger.info(f'Daily BP: {daily_bp}')
         click = False
         if daily_bp >= 600:
             click = self.find_click(Template(r"DAILY_REWARD_600.png", (0.449, 0.241)))
@@ -58,3 +64,4 @@ class Missions(UI):
         self.ui_ensure(page_missions)
         self.claim_daily_rewards()
         self.claim_bp_rewards()
+

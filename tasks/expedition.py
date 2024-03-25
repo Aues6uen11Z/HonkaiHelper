@@ -35,9 +35,10 @@ class Expeditions(UI):
                 self.touch(start_button, v_name='START_EXPEDITION')
             self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227), Keyword('一键派遣')))
             self.find_click(Template(r"DISPATCH_CONFIRM.png", (0.362, 0.227), Keyword('确定探险')))
+            self.sleep(0.3)
             if ocr_fail.ocr_match_keyword(self.screenshot(), ocr_fail.button.keyword, mode=1):
                 self.find_click(TPL_RETURN_BUTTON, times=2)
-                logger.info('完成远征派遣')
+                logger.info('Expedition dispatch completed')
                 break
 
     # 领前一天远征奖励
@@ -50,7 +51,7 @@ class Expeditions(UI):
             self.ui_goto(page_expeditions, another_state)
         if self.find_click(TPL_EXPEDITION_COMPLETED):
             self.find_click(TPL_CONFIRM_BUTTON)
-            logger.info('领取远征奖励')
+            logger.info('Expedition rewards claim completed')
 
     def run(self):
         self.ui_ensure(page_expeditions)

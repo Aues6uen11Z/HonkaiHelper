@@ -26,7 +26,7 @@ class Login(UI):
             if self.ui_page_appear(page_main):
                 self.sleep(3)
                 if not self.ui_ensure(page_main):
-                    logger.info('游戏登录成功')
+                    logger.info('Game login successful')
                     break
 
         return True
@@ -37,7 +37,7 @@ class Login(UI):
     def app_start(self):
         os.system('start ' + Config.GAME_PATH)
         self.auto_setup(str(Path.cwd()), logdir=True, devices=["WindowsPlatform:///?title=崩坏3", ])
-        self.get_popup_list(popup_list)  # TODO: 移到程序开始而不是游戏开始
+        self.get_popup_list(popup_list)  # TODO: Move to program start instead of game start
 
         self.sleep(15)
         self.handle_app_login()
@@ -50,6 +50,6 @@ class Login(UI):
     def check_update(self):
         if self.exists(Template(r"LOGIN_UPDATE.png", (0.002, -0.129))):
             self.find_click(Template(r"DOWNLOAD_CONFIRM.png", (0.0, 0.116)))
-            logger.info('游戏更新中')
+            logger.info('Game updating')
             if self.find_click(Template(r"DOWNLOAD_DONE.png", (0.0, 0.048), Keyword('确定')), timeout=1200):
-                logger.info('游戏更新完成')
+                logger.info('Game update completed')
