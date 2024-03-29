@@ -30,6 +30,7 @@ class Missions(UI):
         reward_level = ocr_reward_level.ocr_single_line(screen)
         logger.info(f'BP reward level: {reward_level}')
 
+        # TODO:65级以后右端顶到头，领取位置变了
         if current_level >= reward_level:
             if self.touch(Template(r"BP_REWARD.png", (-0.179, -0.054)), blind=True):
                 popup_handler.handle_bp_reward()

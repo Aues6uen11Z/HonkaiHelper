@@ -61,3 +61,4 @@ popup_handler = PopupHandler()
 popup_list = [popup_handler.handle_login_event, popup_handler.handle_7day_reward, popup_handler.handle_signin_reward,
               popup_handler.handle_abyss_settle]
 
+# Template(r"NEW_ITEM_POPUP.png", (0.289, -0.01))

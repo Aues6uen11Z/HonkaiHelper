@@ -48,14 +48,14 @@ page_missions = Page(Template(r"GOTO_BP_MISSIONS.png", (-0.417, -0.171), Keyword
                      switch=switch_missions)
 page_missions.link(TPL_RETURN_BUTTON,
                    destination=page_main)
-page_main.link(Template(r"MAIN_GOTO_MISSIONS.png", (-0.454, -0.201)),
+page_main.link(Template(r"MAIN_GOTO_MISSIONS.png", (-0.455, -0.191)),
                destination=page_missions)
 
 # 邮件界面
 page_mail = Page(Template(r"MAIL_FLAG.png", (-0.456, 0.23), Keyword('邮件数')))
 page_mail.link(TPL_RETURN_BUTTON,
                destination=page_main)
-page_main.link(Template(r"MAIN_GOTO_MAIL.png", (-0.42, -0.039)),
+page_main.link(Template(r"MAIN_GOTO_MAIL.png", (-0.421, -0.029)),
                destination=page_mail)
 
 # 远征界面
