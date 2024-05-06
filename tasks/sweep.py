@@ -1,4 +1,5 @@
-from zafkiel import Template, logger
+from zafkiel import Template, logger, Timer
+from zafkiel.exception import ScriptError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
@@ -12,7 +13,11 @@ class Sweep(UI):
         self.ui_goto(page_lite)
 
         TPL_QUICK_LITE = Template(r"QUICK_LITE.png", (0.41, 0.241), Keyword('一键减负'))
+        loop_timer = Timer(0, 10).start()
         while True:
+            if loop_timer.reached():
+                raise ScriptError('The operation has looped too many times')
+
             if not self.exists(TPL_QUICK_LITE):
                 logger.info('Material sweep already done')
                 break

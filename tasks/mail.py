@@ -1,4 +1,5 @@
-from zafkiel import Template, logger
+from zafkiel import Template, logger, Timer
+from zafkiel.exception import ScriptError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
@@ -9,7 +10,11 @@ class Mail(UI):
     def run(self):
         self.ui_ensure(page_mail)
 
+        loop_timer = Timer(0, 10).start()
         while True:
+            if loop_timer.reached():
+                raise ScriptError('The operation has looped too many times')
+
             if self.exists(Template(r"NO_MORE_MAIL.png", (-0.449, -0.154), Keyword('已读'))):
                 logger.info('Mail claim completed')
                 break

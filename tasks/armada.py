@@ -1,5 +1,6 @@
-from zafkiel import Template, logger
+from zafkiel import Template, logger, Timer
 from zafkiel.decorator import run_until_true
+from zafkiel.exception import ScriptError
 from zafkiel.ocr import DigitCounter, Keyword
 from zafkiel.ui import UI
 
@@ -9,7 +10,11 @@ from tasks.base.page import page_armada, page_commission, page_armada_rewards, T
 class Armada(UI):
     def claim_rewards(self):
         logger.info('Start claiming armada rewards')
+        loop_timer = Timer(0, 10).start()
         while True:
+            if loop_timer.reached():
+                raise ScriptError('The operation has looped too many times')
+
             if not self.exists(Template(r"ARMADA_REWARD_TAB.png", (0.38, -0.128))):
                 logger.info('Armada reward claim completed')
                 break
@@ -20,7 +25,11 @@ class Armada(UI):
 
     def _handel_lack(self):
         logger.info('Handling lack of commission materials')
+        loop_timer = Timer(0, 10).start()
         while True:
+            if loop_timer.reached():
+                raise ScriptError('The operation has looped too many times')
+
             if self.exists(Template(r"COMMISSION_SUBMIT.png", (0.237, 0.224), Keyword('提交'), rgb=True)):
                 break
 
@@ -48,7 +57,11 @@ class Armada(UI):
         self.ui_goto(page_commission)
         ocr = DigitCounter(Template(r"COMMISSION_COUNT.png", (0.43, 0.242)))
 
+        loop_timer = Timer(0, 20).start()
         while True:
+            if loop_timer.reached():
+                raise ScriptError('The operation has looped too many times')
+
             if ocr.ocr_single_line(self.screenshot())[0] == 0:
                 logger.info('Commissions submit completed')
                 break

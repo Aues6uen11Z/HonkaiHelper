@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import subprocess
 
 from zafkiel import Template, logger, Config
 from zafkiel.ocr import Keyword
@@ -35,7 +36,7 @@ class Login(UI):
         self.stop_app()
 
     def app_start(self):
-        os.system('start ' + Config.GAME_PATH)
+        subprocess.Popen([Config.GAME_PATH])
         self.auto_setup(str(Path.cwd()), logdir=True, devices=["WindowsPlatform:///?title=崩坏3", ])
         self.get_popup_list(popup_list)  # TODO: Move to program start instead of game start
 

@@ -1,4 +1,5 @@
-from zafkiel import Template, logger
+from zafkiel import Template, logger, Timer
+from zafkiel.exception import ScriptError
 from zafkiel.ocr import Ocr, DigitCounter, Keyword
 from zafkiel.ui import UI
 from zafkiel.utils import crop, color_exists
@@ -14,11 +15,14 @@ class Errand(UI):
         TPL_ERRAND_QUALITY = Template(r"ERRAND_QUALITY.png", (-0.305, 0.03))
         target_idx = 0  # 选第几个打工，由于我的号没不符合条件的情况，所以这个功能没测试
 
-        # todo:终止循环条件
+        loop_timer = Timer(0, 20).start()
+        confirm_timer = Timer(3)
         while True:
+            if loop_timer.reached():
+                raise ScriptError('The operation has looped too many times')
+
             screen = self.screenshot()
             enter_button = None
-
             try:
                 enter_button = ocr.ocr_match_keyword(screen, Keyword('需要'), mode=1)[target_idx].area
             except IndexError:
@@ -38,6 +42,7 @@ class Errand(UI):
             screen = self.screenshot()
             quality_check = crop(screen, TPL_ERRAND_QUALITY.area)
             if color_exists(quality_check, (255, 94, 65)):
+                # logger.info()
                 target_idx += 1
                 continue
 
@@ -47,7 +52,13 @@ class Errand(UI):
                 logger.info('Errand dispatch completed')
                 break
 
-            self.find_click(Template(r"ERRAND_START.png", (0.388, 0.245), Keyword('开始打工')))
+            # 确保跳出界面
+            confirm_timer.reset()
+            while self.find_click(Template(r"ERRAND_START.png", (0.388, 0.245), Keyword('开始打工')), timeout=0):
+                if confirm_timer.reached():
+                    self.find_click(TPL_RETURN_BUTTON)
+                    break
+                self.sleep(0.5)
 
     # 领前一天打工奖励
     def claim_rewards(self):
@@ -60,3 +71,4 @@ class Errand(UI):
         self.ui_ensure(page_errands)
         self.claim_rewards()
         self.dispatch()
+
