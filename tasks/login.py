@@ -1,8 +1,11 @@
-import os
+import datetime
+import shutil
+import time
 from pathlib import Path
 import subprocess
+from typing import Dict
 
-from zafkiel import Template, logger, Config
+from zafkiel import Template, logger
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
@@ -11,6 +14,31 @@ from tasks.base.page import page_main
 
 
 class Login(UI):
+    def __init__(self, config: Dict):
+        self.config = config
+
+    def manage_log(self):
+        log_retain_map = {
+            '1day': 1,
+            '3days': 3,
+            '1week': 7,
+            '1month': 30,
+        }
+        retain_days = log_retain_map.get(self.config['General']['Game']['log_retain'], 7)
+
+        current_time = time.time()
+        log_path = Path('./log')
+
+        for log_dir in log_path.iterdir():
+            create_time = log_dir.stat().st_ctime
+            age_in_days = (current_time - create_time) / (24 * 3600)
+
+            if age_in_days > retain_days:
+                try:
+                    logger.info(f'Deleting old log directory: {log_dir}')
+                    shutil.rmtree(log_dir)
+                except Exception as e:
+                    logger.error(f'Failed to delete {log_dir}: {e}')
 
     def handle_app_login(self):
 
@@ -36,8 +64,10 @@ class Login(UI):
         self.stop_app()
 
     def app_start(self):
-        subprocess.Popen([Config.GAME_PATH])
-        self.auto_setup(str(Path.cwd()), logdir=True, devices=["WindowsPlatform:///?title=崩坏3", ])
+        subprocess.Popen([self.config['General']['Game']['game_path']])
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+        self.auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
+        self.manage_log()
         self.get_popup_list(popup_list)  # TODO: Move to program start instead of game start
 
         self.sleep(15)

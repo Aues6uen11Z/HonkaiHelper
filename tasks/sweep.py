@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, logger, Timer
 from zafkiel.exception import ScriptError
 from zafkiel.ocr import Keyword
@@ -8,6 +10,9 @@ from tasks.base.switch import TPL_BATTLE_ATTACK_TAB
 
 
 class Sweep(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     def run(self):
         self.ui_ensure(page_battle, TPL_BATTLE_ATTACK_TAB)
         self.ui_goto(page_lite)

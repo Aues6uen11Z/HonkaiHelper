@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, Timer, logger
 from zafkiel.ocr import Ocr, Keyword
 from zafkiel.ui import UI
@@ -7,6 +9,9 @@ from tasks.base.switch import TPL_EXPEDITION_MATL_TAB, TPL_EXPEDITION_FRAG_TAB
 
 
 class Expeditions(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     # 远征派遣
     # TODO: 远征类型写进配置
     def dispatch(self):
@@ -31,7 +36,7 @@ class Expeditions(UI):
 
             miss_count.reset()
             if start_button:
-                start_button = (start_button[0]+start_button[2])/2, (start_button[1]+start_button[3])/2
+                start_button = (start_button[0] + start_button[2]) / 2, (start_button[1] + start_button[3]) / 2
                 self.touch(start_button, v_name='START_EXPEDITION')
             self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227), Keyword('一键派遣')))
             self.find_click(Template(r"DISPATCH_CONFIRM.png", (0.362, 0.227), Keyword('确定探险')))

@@ -142,3 +142,6 @@ cython_debug/
 log/
 test.py
 tasks/**/*.png
+abyss/
+config/config.json
+tools/

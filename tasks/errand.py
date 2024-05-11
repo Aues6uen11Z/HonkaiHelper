@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, logger, Timer
 from zafkiel.exception import ScriptError
 from zafkiel.ocr import Ocr, DigitCounter, Keyword
@@ -8,6 +10,9 @@ from tasks.base.page import page_errands, TPL_RETURN_BUTTON, TPL_CONFIRM_BUTTON
 
 
 class Errand(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     # 打工派遣
     def dispatch(self):
         ocr = Ocr(Template(r"ERRAND_LIST.png", (0.427, 0.005)))

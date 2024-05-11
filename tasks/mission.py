@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, logger
 from zafkiel.ocr import Digit, Keyword
 from zafkiel.ui import UI
@@ -8,6 +10,9 @@ from tasks.base.switch import TPL_BP_MISSIONS_TAB, TPL_BP_REWARDS_TAB
 
 
 class Missions(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     def claim_bp_rewards(self):
         self.ui_goto(page_missions, TPL_BP_REWARDS_TAB)
         # # 领每周箱子，todo:写进配置，每周领过一次后不再识别；改逻辑
@@ -65,4 +70,3 @@ class Missions(UI):
         self.ui_ensure(page_missions)
         self.claim_daily_rewards()
         self.claim_bp_rewards()
-

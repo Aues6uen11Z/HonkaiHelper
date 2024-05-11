@@ -1,0 +1,63 @@
+{
+  "Menu": {
+    "Project": {
+      "name": "项目"
+    },
+    "Daily": {
+      "name": "日常"
+    }
+  },
+  "Task": {
+    "General": {
+      "name": "总览"
+    },
+    "Login": {
+      "name": "启动游戏"
+    },
+    "Logout": {
+      "name": "退出游戏"
+    },
+    "Mission1": {
+      "name": "活跃奖励1"
+    },
+    "Mission2": {
+      "name": "活跃奖励2"
+    },
+    "Sweep": {
+      "name": "减负"
+    },
+    "Mail": {
+      "name": "邮件"
+    },
+    "DormBonus": {
+      "name": "宿舍奖励"
+    },
+    "Expedition": {
+      "name": "远征"
+    },
+    "Errand": {
+      "name": "打工"
+    },
+    "Armada": {
+      "name": "舰团奖励"
+    }
+  },
+  "Game": {
+    "_info": {
+      "name": "游戏设置",
+      "help": ""
+    },
+    "game_path": {
+      "name": "游戏路径",
+      "help": "游戏本体而非启动器路径，例如“G:\\Honkai Impact 3\\Games\\BH3.exe”"
+    },
+    "log_retain": {
+      "name": "日志保留时间",
+      "help": "",
+      "1day": "1天",
+      "3days": "3天",
+      "1week": "1周",
+      "1month": "1月"
+    }
+  }
+}

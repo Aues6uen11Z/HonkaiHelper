@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, logger
 from zafkiel.ocr import Digit
 from zafkiel.ui import UI
@@ -6,6 +8,9 @@ from tasks.base.page import page_dorm
 
 
 class DormBonus(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     def claim_stamina(self):
         logger.info('Start claiming dorm stamina')
         self.ui_ensure(page_dorm)
@@ -23,3 +28,7 @@ class DormBonus(UI):
         self.ui_ensure(page_dorm)
         if self.find_click(Template(r"DORM_GOLD.png", (-0.216, -0.071)), times=2):
             logger.info('Dorm gold claim completed')
+
+    def run(self):
+        self.claim_gold()
+        self.claim_stamina()

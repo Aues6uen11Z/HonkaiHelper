@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, logger, Timer
 from zafkiel.exception import ScriptError
 from zafkiel.ocr import Keyword
@@ -7,6 +9,9 @@ from tasks.base.page import page_mail, TPL_CONFIRM_BUTTON
 
 
 class Mail(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     def run(self):
         self.ui_ensure(page_mail)
 

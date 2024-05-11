@@ -1,3 +1,5 @@
+from typing import Dict
+
 from zafkiel import Template, logger, Timer
 from zafkiel.decorator import run_until_true
 from zafkiel.exception import ScriptError
@@ -8,6 +10,9 @@ from tasks.base.page import page_armada, page_commission, page_armada_rewards, T
 
 
 class Armada(UI):
+    def __init__(self, config: Dict = None):
+        self.config = config
+
     def claim_rewards(self):
         logger.info('Start claiming armada rewards')
         loop_timer = Timer(0, 10).start()
@@ -84,4 +89,3 @@ class Armada(UI):
         self.ui_ensure(page_armada)
         self.commission()
         self.claim_rewards()
-
