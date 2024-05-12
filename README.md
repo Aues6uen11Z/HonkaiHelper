@@ -1,10 +1,5 @@
 # HonkaiHelper
-基于图色识别和OCR的崩坏3自动化脚本
-
-## 前言
-1. 我永远喜欢崩坏3
-
-2. 脚本程序，**用别怕，怕别用**
+基于图色识别和OCR的PC端崩坏3自动化脚本，先别退坑，刷刷日常凑登录天数吧~
 
 ## 功能
 
@@ -20,6 +15,17 @@
 - 提交舰团委托、领舰团奖励
 
 ## 使用方法
+
+### 一键包
+
+尝鲜版图形化一键包现已发布，无需配置python环境，但可能有各种奇妙bug，欢迎[下载体验](https://github.com/Aues6uen11Z/HonkaiHelper/releases)。所用的图形化界面[DaCapo](https://github.com/Aues6uen11Z/DaCapo)与本项目完全独立，是一个通用脚本管理器，如果你有其他脚本想放上来，可以自行查看README了解用法。
+
+解压后点击DaCapo.exe启动程序，进入“总览”修改游戏路径，然后回到主页点击按钮即可开始。
+
+![](./docs/guide.png)
+
+### 从源码构建
+
 1. 克隆本项目或直接下载压缩包并解压
 ```shell
 git clone https://github.com/Aues6uen11Z/HonkaiHelper.git 
@@ -34,13 +40,13 @@ conda create -n zafkiel python==3.9.18
 conda activate zafkiel
 ```
 
-3. 在该环境内安装Zafkiel包
+3. 在该环境内安装依赖包
 
 ```shell
-pip install zafkiel
+pip install zafkiel pydantic
 ```
 
-4. 到项目根目录下的config.py修改游戏启动路径
+4. 到项目根目录下的config/config.json修改游戏启动路径
 5. 在项目根目录运行main.py
 
 ```shell
@@ -59,16 +65,12 @@ python main.py
 
 2. 理论上可以在任意16:9的分辨率运行，但我目前开发测试都在1280×720窗口模式，求稳请使用720P。
 
-3. 目前新版本尚未开发完全，不能保证在每一个人的电脑上都完美运行，出现问题可以在issue中提出。
-
-4. 注意每次运行程序都会清除上一次运行的网页报告，报告位于log/log.html
-
-![网页报告](report.png)
+3. 目前新版本尚未开发完全，不能保证在每一个人的电脑上都完美运行，出现问题可以在issue中提出，记得附上日志（网页报告暂时不用，还没有整理，有很多无用信息）
 
 ## Todo
 
 - [ ] 常用功能
-- [ ] 图形化界面
+- [x] 图形化界面
 - [ ] 安卓模拟器支持
 - [ ] 改进日志和网页报告
 
