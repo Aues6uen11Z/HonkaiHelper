@@ -1,7 +1,7 @@
 from typing import Dict
 
 from zafkiel import Template, logger, Timer
-from zafkiel.exception import ScriptError
+from zafkiel.exception import LoopError
 from zafkiel.ocr import Ocr, DigitCounter, Keyword
 from zafkiel.ui import UI
 from zafkiel.utils import crop, color_exists
@@ -24,7 +24,7 @@ class Errand(UI):
         confirm_timer = Timer(3)
         while True:
             if loop_timer.reached():
-                raise ScriptError('The operation has looped too many times')
+                raise LoopError('The operation has looped too many times')
 
             screen = self.screenshot()
             enter_button = None

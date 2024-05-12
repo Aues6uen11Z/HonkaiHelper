@@ -22,7 +22,7 @@ class GCustomBase(BaseModel):
     priority: Optional[int] = 3
     priority_enabled: Optional[bool] = True
     command: Optional[str] = ''
-    command_enabled: Optional[bool] = True
+    command_enabled: Optional[bool] = False
 
 
 class GGeneralBase(BaseModel):
@@ -30,11 +30,11 @@ class GGeneralBase(BaseModel):
     General settings for the project
     """
     work_dir: Optional[str] = './examples/HonkaiHelper'
-    work_dir_enabled: Optional[bool] = True
+    work_dir_enabled: Optional[bool] = False
     is_background: Optional[bool] = False
     is_background_enabled: Optional[bool] = True
     config_path: Optional[str] = './examples/HonkaiHelper/config/config.json'
-    config_path_enabled: Optional[bool] = True
+    config_path_enabled: Optional[bool] = False
 
 
 # 以下是实际设置内容

@@ -3,11 +3,11 @@
     "General": {
       "_Base": {
         "work_dir": "./examples/HonkaiHelper",
-        "work_dir_enabled": true,
+        "work_dir_enabled": false,
         "is_background": false,
         "is_background_enabled": true,
         "config_path": "./examples/HonkaiHelper/config/config.json",
-        "config_path_enabled": true
+        "config_path_enabled": false
       },
       "Game": {
         "game_path": {
@@ -36,7 +36,7 @@
         "priority": 0,
         "priority_enabled": false,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t login",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Logout": {
@@ -44,7 +44,7 @@
         "priority": 100,
         "priority_enabled": false,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t logout",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Mission1": {
@@ -52,7 +52,7 @@
         "priority": 1,
         "priority_enabled": false,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t mission",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Mission2": {
@@ -60,7 +60,7 @@
         "priority": 99,
         "priority_enabled": false,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t mission",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Sweep": {
@@ -68,7 +68,7 @@
         "priority": 6,
         "priority_enabled": true,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t sweep",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Mail": {
@@ -76,7 +76,7 @@
         "priority": 7,
         "priority_enabled": true,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t mail",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "DormBonus": {
@@ -84,7 +84,7 @@
         "priority": 2,
         "priority_enabled": true,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t dorm_bonus",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Expedition": {
@@ -92,7 +92,7 @@
         "priority": 4,
         "priority_enabled": true,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t expedition",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Errand": {
@@ -100,7 +100,7 @@
         "priority": 3,
         "priority_enabled": true,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t errand",
-        "command_enabled": true
+        "command_enabled": false
       }
     },
     "Armada": {
@@ -108,7 +108,7 @@
         "priority": 5,
         "priority_enabled": true,
         "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t armada",
-        "command_enabled": true
+        "command_enabled": false
       }
     }
   }

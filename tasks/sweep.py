@@ -1,7 +1,7 @@
 from typing import Dict
 
 from zafkiel import Template, logger, Timer
-from zafkiel.exception import ScriptError
+from zafkiel.exception import LoopError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
@@ -21,7 +21,7 @@ class Sweep(UI):
         loop_timer = Timer(0, 10).start()
         while True:
             if loop_timer.reached():
-                raise ScriptError('The operation has looped too many times')
+                raise LoopError('The operation has looped too many times')
 
             if not self.exists(TPL_QUICK_LITE):
                 logger.info('Material sweep already done')

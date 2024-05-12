@@ -2,7 +2,7 @@ from typing import Dict
 
 from zafkiel import Template, logger, Timer
 from zafkiel.decorator import run_until_true
-from zafkiel.exception import ScriptError
+from zafkiel.exception import LoopError
 from zafkiel.ocr import DigitCounter, Keyword
 from zafkiel.ui import UI
 
@@ -18,7 +18,7 @@ class Armada(UI):
         loop_timer = Timer(0, 10).start()
         while True:
             if loop_timer.reached():
-                raise ScriptError('The operation has looped too many times')
+                raise LoopError('The operation has looped too many times')
 
             if not self.exists(Template(r"ARMADA_REWARD_TAB.png", (0.38, -0.128))):
                 logger.info('Armada reward claim completed')
@@ -33,7 +33,7 @@ class Armada(UI):
         loop_timer = Timer(0, 10).start()
         while True:
             if loop_timer.reached():
-                raise ScriptError('The operation has looped too many times')
+                raise LoopError('The operation has looped too many times')
 
             if self.exists(Template(r"COMMISSION_SUBMIT.png", (0.237, 0.224), Keyword('提交'), rgb=True)):
                 break
@@ -65,7 +65,7 @@ class Armada(UI):
         loop_timer = Timer(0, 20).start()
         while True:
             if loop_timer.reached():
-                raise ScriptError('The operation has looped too many times')
+                raise LoopError('The operation has looped too many times')
 
             if ocr.ocr_single_line(self.screenshot())[0] == 0:
                 logger.info('Commissions submit completed')

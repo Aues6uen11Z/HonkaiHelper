@@ -1,6 +1,7 @@
 from typing import Dict
 
 from zafkiel import Template, Timer, logger
+from zafkiel.exception import LoopError
 from zafkiel.ocr import Ocr, Keyword
 from zafkiel.ui import UI
 
@@ -19,7 +20,11 @@ class Expeditions(UI):
         ocr_fail = Ocr(Template(r"DISPATCH_FAIL.png", (0.207, -0.004), Keyword('派遣')))
 
         miss_count = Timer(3, 5).start()  # 防止没识别到“无法派遣”黑条进入死循环
+        loop_timer = Timer(0, 20).start()
         while True:
+            if loop_timer.reached():
+                raise LoopError('The operation has looped too many times')
+
             screen = self.screenshot()
             start_button = None
             try:
