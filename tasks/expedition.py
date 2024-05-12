@@ -43,7 +43,7 @@ class Expeditions(UI):
             if start_button:
                 start_button = (start_button[0] + start_button[2]) / 2, (start_button[1] + start_button[3]) / 2
                 self.touch(start_button, v_name='START_EXPEDITION')
-            self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227), Keyword('一键派遣')))
+            self.find_click(Template(r"QUICK_DISPATCH.png", (0.119, 0.227), Keyword('派遣')), ocr_mode=1)
             self.find_click(Template(r"DISPATCH_CONFIRM.png", (0.362, 0.227), Keyword('确定探险')))
             self.sleep(0.3)
             if ocr_fail.ocr_match_keyword(self.screenshot(), ocr_fail.button.keyword, mode=1):
