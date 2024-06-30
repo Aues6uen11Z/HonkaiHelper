@@ -7,7 +7,7 @@ TPL_BP_MISSIONS_TAB = Template(r"BP_MISSIONS_TAB.png", (-0.227, 0.256))
 TPL_BP_REWARDS_TAB = Template(r"BP_REWARDS_TAB.png", (-0.273, -0.044))
 TPL_BP_SHOP_TAB = Template(r"BP_SHOP_TAB.png", (-0.391, 0.034), Keyword('作战工坊'))
 TPL_GOTO_BP_MISSIONS = Template(r"GOTO_BP_MISSIONS.png", (-0.417, -0.171), Keyword('作战任务'))
-TPL_GOTO_BP_REWARDS = Template(r"GOTO_BP_REWARDS.png", (-0.42, -0.102), Keyword('作战奖励'))
+TPL_GOTO_BP_REWARDS = Template(r"GOTO_BP_REWARD.png", (-0.419, 0.008), Keyword('作战奖励'))
 TPL_GOTO_BP_SHOP = Template(r"GOTO_BP_SHOP.png", (-0.418, -0.029), Keyword('作战商店'))
 
 switch_missions = Switch('switch_missions', is_selector=True)

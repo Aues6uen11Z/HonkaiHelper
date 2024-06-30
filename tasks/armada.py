@@ -50,7 +50,7 @@ class Armada(UI):
         ocr = DigitCounter(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225)))
         if ocr.ocr_single_line(self.screenshot())[0] == 0:
             self.find_click(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225)), blind=True)
-            self.find_click(Template(r"COMMISSION_REQUEST_FLAG.png", (-0.384, -0.184), Keyword('申请新委托')),
+            self.find_click(Template(r"COMMISSION_REQUEST_FLAG.png", (-0.378, -0.18), Keyword('委托申请次数')),
                             Template(r"COMMISSION_ACCEPT.png", (0.375, -0.079), Keyword('接受')),
                             times=2)
             logger.info('New commission request completed')
