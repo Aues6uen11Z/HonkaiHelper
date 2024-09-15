@@ -3,11 +3,11 @@
     "General": {
       "_Base": {
         "work_dir": "./examples/HonkaiHelper",
-        "work_dir_enabled": false,
+        "work_dir_enabled": true,
         "is_background": false,
         "is_background_enabled": true,
         "config_path": "./examples/HonkaiHelper/config/config.json",
-        "config_path_enabled": false
+        "config_path_enabled": true
       },
       "Game": {
         "game_path": {
@@ -28,6 +28,20 @@
           "hide": false
         }
       }
+    },
+    "Update": {
+      "_Base": {
+        "repo_url": "https://github.com/Aues6uen11Z/HonkaiHelper",
+        "repo_url_enabled": true,
+        "branch": "master",
+        "branch_enabled": true,
+        "local_path": "./examples/HonkaiHelper",
+        "local_path_enabled": true,
+        "template_path": "config",
+        "template_path_enabled": true,
+        "env_name": "zafkiel",
+        "pip_mirror": "https://pypi.tuna.tsinghua.edu.cn/simple"
+      }
     }
   },
   "Daily": {
@@ -35,80 +49,80 @@
       "_Base": {
         "priority": 0,
         "priority_enabled": false,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t login",
-        "command_enabled": false
+        "command": "py main.py -t login",
+        "command_enabled": true
       }
     },
     "Logout": {
       "_Base": {
         "priority": 100,
         "priority_enabled": false,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t logout",
-        "command_enabled": false
+        "command": "py main.py -t logout",
+        "command_enabled": true
       }
     },
     "Mission1": {
       "_Base": {
         "priority": 1,
         "priority_enabled": false,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t mission",
-        "command_enabled": false
+        "command": "py main.py -t mission",
+        "command_enabled": true
       }
     },
     "Mission2": {
       "_Base": {
         "priority": 99,
         "priority_enabled": false,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t mission",
-        "command_enabled": false
+        "command": "py main.py -t mission",
+        "command_enabled": true
       }
     },
     "Sweep": {
       "_Base": {
         "priority": 6,
         "priority_enabled": true,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t sweep",
-        "command_enabled": false
+        "command": "py main.py -t sweep",
+        "command_enabled": true
       }
     },
     "Mail": {
       "_Base": {
         "priority": 7,
         "priority_enabled": true,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t mail",
-        "command_enabled": false
+        "command": "py main.py -t mail",
+        "command_enabled": true
       }
     },
     "DormBonus": {
       "_Base": {
         "priority": 2,
         "priority_enabled": true,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t dorm_bonus",
-        "command_enabled": false
+        "command": "py main.py -t dorm_bonus",
+        "command_enabled": true
       }
     },
     "Expedition": {
       "_Base": {
         "priority": 4,
         "priority_enabled": true,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t expedition",
-        "command_enabled": false
+        "command": "py main.py -t expedition",
+        "command_enabled": true
       }
     },
     "Errand": {
       "_Base": {
         "priority": 3,
         "priority_enabled": true,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t errand",
-        "command_enabled": false
+        "command": "py main.py -t errand",
+        "command_enabled": true
       }
     },
     "Armada": {
       "_Base": {
         "priority": 5,
         "priority_enabled": true,
-        "command": "./examples/HonkaiHelper/tools/python/python.exe main.py -t armada",
-        "command_enabled": false
+        "command": "py main.py -t armada",
+        "command_enabled": true
       }
     }
   }

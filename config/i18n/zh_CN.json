@@ -11,6 +11,9 @@
     "General": {
       "name": "总览"
     },
+    "Update": {
+      "name": "更新"
+    },
     "Login": {
       "name": "启动游戏"
     },

@@ -15,111 +15,140 @@ class Argument(BaseModel):
     hide: bool = False
 
 
-class GCustomBase(BaseModel):
+class GroupCustomBase(BaseModel):
     """
     Basic settings for every task
     """
-    priority: Optional[int] = 3
-    priority_enabled: Optional[bool] = True
-    command: Optional[str] = ''
-    command_enabled: Optional[bool] = False
-
-
-class GGeneralBase(BaseModel):
-    """
-    General settings for the project
-    """
-    work_dir: Optional[str] = './examples/HonkaiHelper'
-    work_dir_enabled: Optional[bool] = False
-    is_background: Optional[bool] = False
-    is_background_enabled: Optional[bool] = True
-    config_path: Optional[str] = './examples/HonkaiHelper/config/config.json'
-    config_path_enabled: Optional[bool] = False
+    priority: int = 3
+    priority_enabled: bool = True
+    command: str = ''
+    command_enabled: bool = True
 
 
 # 以下是实际设置内容
 # 任务级别
-class TGeneral(BaseModel):
-    class GGame(BaseModel):
+class TaskGeneral(BaseModel):
+    class GroupGeneralBase(BaseModel):
+        """
+        General settings for the project
+        """
+        work_dir: str = './examples/HonkaiHelper'
+        work_dir_enabled: bool = True
+        is_background: bool = False
+        is_background_enabled: bool = True
+        config_path: str = './examples/HonkaiHelper/config/config.json'
+        config_path_enabled: bool = True
+    
+    class GroupGame(BaseModel):
         game_path: Argument = Argument(type='input', value='')
         log_retain: Argument = Argument(type='select', value='1week', option=['1day', '3days', '1week', '1month'])
 
-    Base: GGeneralBase = Field(GGeneralBase(), alias='_Base')
-    Game: GGame = GGame()
+    Base: GroupGeneralBase = Field(GroupGeneralBase(), alias='_Base')
+    Game: GroupGame = GroupGame()
 
 
-class TArmada(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t armada',
-                                          priority=5), alias='_Base')
+class TaskUpdate(BaseModel):
+    class GroupUpdateBase(BaseModel):
+        """
+        Git repository, python virtual environment update settings
+        """
+        repo_url: str = 'https://github.com/Aues6uen11Z/HonkaiHelper'
+        repo_url_enabled: bool = True
+        branch: str = 'master'
+        branch_enabled: bool = True
+        local_path: str = './examples/HonkaiHelper'
+        local_path_enabled: bool = True
+        template_path: str = 'config'
+        template_path_enabled: bool = True
+        env_name: str = 'zafkiel'
+        pip_mirror: str = 'https://pypi.tuna.tsinghua.edu.cn/simple'
+
+    Base: GroupUpdateBase = Field(GroupUpdateBase(), alias='_Base')
 
 
-class TDormBonus(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t dorm_bonus',
-                                          priority=2), alias='_Base')
+class TaskArmada(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t armada', priority=5
+        ), alias='_Base')
 
 
-class TErrand(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t errand',
-                                          priority=3), alias='_Base')
+class TaskDormBonus(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t dorm_bonus', priority=2
+        ), alias='_Base')
 
 
-class TExpedition(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t expedition',
-                                          priority=4), alias='_Base')
+class TaskErrand(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t errand', priority=3
+        ), alias='_Base')
 
 
-class TLogin(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t login',
-                                          priority=0, priority_enabled=False), alias='_Base')
+class TaskExpedition(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t expedition', priority=4
+        ), alias='_Base')
 
 
-class TLogout(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t logout',
-                                          priority=100, priority_enabled=False), alias='_Base')
+class TaskLogin(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t login', priority=0, priority_enabled=False
+        ), alias='_Base')
 
 
-class TMail(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t mail',
-                                          priority=7), alias='_Base')
+class TaskLogout(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t logout', priority=100, priority_enabled=False
+        ), alias='_Base')
 
 
-class TMission1(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t mission',
-                                          priority=1, priority_enabled=False), alias='_Base')
+class TaskMail(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t mail', priority=7
+        ), alias='_Base')
 
 
-class TMission2(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t mission',
-                                          priority=99, priority_enabled=False), alias='_Base')
+class TaskMission1(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t mission', priority=1, priority_enabled=False
+        ), alias='_Base')
 
 
-class TSweep(BaseModel):
-    Base: GCustomBase = Field(GCustomBase(command='./examples/HonkaiHelper/tools/python/python.exe main.py -t sweep',
-                                          priority=6), alias='_Base')
+class TaskMission2(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t mission', priority=99, priority_enabled=False
+        ), alias='_Base')
+
+
+class TaskSweep(BaseModel):
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t sweep', priority=6
+        ), alias='_Base')
 
 
 # 任务组级别
-class MProject(BaseModel):
-    General: TGeneral = TGeneral()
+class MenuProject(BaseModel):
+    General: TaskGeneral = TaskGeneral()
+    Update: TaskUpdate = TaskUpdate()
 
 
-class MDaily(BaseModel):
-    Login: TLogin = TLogin()
-    Logout: TLogout = TLogout()
-    Mission1: TMission1 = TMission1()
-    Mission2: TMission2 = TMission2()
-    Sweep: TSweep = TSweep()
-    Mail: TMail = TMail()
-    DormBonus: TDormBonus = TDormBonus()
-    Expedition: TExpedition = TExpedition()
-    Errand: TErrand = TErrand()
-    Armada: TArmada = TArmada()
+class MenuDaily(BaseModel):
+    Login: TaskLogin = TaskLogin()
+    Logout: TaskLogout = TaskLogout()
+    Mission1: TaskMission1 = TaskMission1()
+    Mission2: TaskMission2 = TaskMission2()
+    Sweep: TaskSweep = TaskSweep()
+    Mail: TaskMail = TaskMail()
+    DormBonus: TaskDormBonus = TaskDormBonus()
+    Expedition: TaskExpedition = TaskExpedition()
+    Errand: TaskErrand = TaskErrand()
+    Armada: TaskArmada = TaskArmada()
 
 
 # 项目级别
 class Config(BaseModel):
-    Project: MProject = MProject()
-    Daily: MDaily = MDaily()
+    Project: MenuProject = MenuProject()
+    Daily: MenuDaily = MenuDaily()
 
 
 def gen_i18n(config: BaseModel, lang: str):
@@ -160,7 +189,7 @@ def gen_i18n(config: BaseModel, lang: str):
         json.dump(trans_dict, f, ensure_ascii=False, indent=2)
 
 
-def export():
+def export() -> None:
     config = Config()
     with open('config/args.json', 'w') as f:
         f.write(config.model_dump_json(indent=2, by_alias=True))
