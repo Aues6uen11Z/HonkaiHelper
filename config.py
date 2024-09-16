@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Literal, List, Union, Optional
+from typing import Literal, List, Union
 
 from pydantic import BaseModel, Field
 
@@ -194,7 +194,7 @@ def export() -> None:
     with open('config/args.json', 'w') as f:
         f.write(config.model_dump_json(indent=2, by_alias=True))
 
-    gen_i18n(config, 'zh_CN')
+    gen_i18n(config, 'zh-CN')
 
 
 if __name__ == '__main__':
