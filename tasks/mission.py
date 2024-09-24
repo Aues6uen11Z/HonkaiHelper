@@ -48,7 +48,7 @@ class Missions(UI):
             self.find_click(TPL_CONFIRM_BUTTON)
             logger.info('Daily rewards claim completed')
 
-        ocr = Digit(Template(r"DAILY_BP.png", (-0.274, 0.23)))
+        ocr = Digit(Template(r"DAILY_BP.png", (-0.273, 0.231)))
         daily_bp = ocr.ocr_single_line(self.screenshot())
         logger.info(f'Daily BP: {daily_bp}')
         click = False

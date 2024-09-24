@@ -3,7 +3,7 @@ from zafkiel.ocr import Keyword
 from zafkiel.ui import Switch
 
 # BP任务界面
-TPL_BP_MISSIONS_TAB = Template(r"BP_MISSIONS_TAB.png", (-0.227, 0.256))
+TPL_BP_MISSIONS_TAB = Template(r"BP_MISSIONS_TAB.png", (-0.227, 0.257))
 TPL_BP_REWARDS_TAB = Template(r"BP_REWARDS_TAB.png", (-0.273, -0.044))
 TPL_BP_SHOP_TAB = Template(r"BP_SHOP_TAB.png", (-0.391, 0.034), Keyword('作战工坊'))
 TPL_GOTO_BP_MISSIONS = Template(r"GOTO_BP_MISSIONS.png", (-0.417, -0.171), Keyword('作战任务'))

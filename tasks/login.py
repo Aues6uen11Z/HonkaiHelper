@@ -65,8 +65,9 @@ class Login(UI):
 
     def app_start(self):
         subprocess.Popen([self.config['General']['Game']['game_path']])
-        date = datetime.datetime.now().strftime("%Y-%m-%d")
-        self.auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
+        # date = datetime.datetime.now().strftime("%Y-%m-%d")
+        # self.auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
+        self.auto_setup(str(Path.cwd()), devices=["WindowsPlatform:///?title=崩坏3", ])
         self.manage_log()
         self.get_popup_list(popup_list)  # TODO: Move to program start instead of game start
 
