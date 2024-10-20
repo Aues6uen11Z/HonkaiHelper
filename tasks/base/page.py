@@ -100,7 +100,7 @@ page_main.link(Template(r"MAIN_GOTO_BATTLE.png", (0.421, -0.004), Keyword('出�
                destination=page_battle)
 
 # 材料活动界面
-page_lite = Page(Template(r"LITE_FLAG.png", (-0.043, -0.087)))
+page_lite = Page(Template(r"LITE_FLAG.png", (-0.001, -0.195), Keyword('材料活动')))
 page_lite.link(TPL_RETURN_BUTTON,
                destination=page_battle)
 page_lite.link(TPL_HOME_BUTTON,
