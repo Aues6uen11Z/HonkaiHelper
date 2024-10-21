@@ -1,6 +1,6 @@
 from typing import Dict
 
-from zafkiel import Template, logger, Timer
+from zafkiel import Template, logger, Timer, find_click, exists
 from zafkiel.exception import LoopError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI

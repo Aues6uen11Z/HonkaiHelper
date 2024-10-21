@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 from loguru import logger
-from zafkiel import API, simple_report
+from zafkiel import simple_report, auto_setup
 
 from tasks.armada import Armada
 from tasks.dorm_bonus import DormBonus
@@ -57,8 +57,8 @@ def all_tasks(config):
 def single_task(config, task):
     try:
         if task != 'login':
-            API().auto_setup(str(Path.cwd()), devices=["WindowsPlatform:///?title=崩坏3", ])
-            # API().auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
+            auto_setup(str(Path.cwd()), devices=["WindowsPlatform:///?title=崩坏3", ])
+            # auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
 
         if task == 'armada':
             Armada(config).run()

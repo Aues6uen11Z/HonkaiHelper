@@ -1,4 +1,4 @@
-from zafkiel import API, Template
+from zafkiel import Template, find_click, screenshot, touch, exists
 from zafkiel.decorator import run_until_true
 from zafkiel.ocr import Keyword
 from zafkiel.utils import is_color_similar, crop
@@ -6,25 +6,27 @@ from zafkiel.utils import is_color_similar, crop
 from tasks.base.page import TPL_CONFIRM_BUTTON
 
 
-class PopupHandler(API):
+class PopupHandler:
     # 凭证奖励弹窗
-    def handle_bp_reward(self):
+    @staticmethod
+    def handle_bp_reward():
         rec_template = Template(r"POPUP_BP_FLAG.png", (-0.137, 0.218), Keyword('升级凭证'))
         touch_template = Template(r"POPUP_BP_CLAIM.png", (0.137, 0.218), Keyword('领取奖励'))
-        if self.find_click(rec_template, timeout=0, touch_template=touch_template):
-            return self.find_click(TPL_CONFIRM_BUTTON)
+        if find_click(rec_template, timeout=0, touch_template=touch_template):
+            return find_click(TPL_CONFIRM_BUTTON)
 
     # 活动通知弹窗
-    def handle_login_event(self):
+    @staticmethod
+    def handle_login_event():
         rec_template = Template(r"POPUP_EVENT_FLAG.png", (0.0, 0.24))
         touch_template = Template(r"POPUP_MARGIN.png", (0.467, -0.252))
-        return self.find_click(rec_template, timeout=0, touch_template=touch_template, blind=True)
+        return find_click(rec_template, timeout=0, touch_template=touch_template, blind=True)
 
     # 不定时的七日登录奖励
     @run_until_true
     def handle_7day_reward(self):
-        if self.find_click(Template(r"7DAY_REWARD_CLAIM.png", (0.084, 0.234)), timeout=0):
-            if self.find_click(Template(r"7DAY_REWARD_CONFIRM.png", (-0.001, 0.145))):
+        if find_click(Template(r"7DAY_REWARD_CLAIM.png", (0.084, 0.234)), timeout=0):
+            if find_click(Template(r"7DAY_REWARD_CONFIRM.png", (-0.001, 0.145))):
                 return True
 
         return False
@@ -32,9 +34,8 @@ class PopupHandler(API):
     # 每日签到奖励
     @run_until_true
     def handle_signin_reward(self):
-        if self.find_click(Template(r"SIGNIN_REWARD_CLAIM.png", (0.083, 0.248)),
-                           timeout=0):
-            if self.find_click(Template(r"SIGNIN_REWARD_CONFIRM.png", (-0.001, 0.134))):
+        if find_click(Template(r"SIGNIN_REWARD_CLAIM.png", (0.083, 0.248)), timeout=0):
+            if find_click(Template(r"SIGNIN_REWARD_CONFIRM.png", (-0.001, 0.134))):
                 return True
 
         return False
@@ -45,7 +46,7 @@ class PopupHandler(API):
     #     rec_template = Template(r"assets/NOTICE_FLAG.png", record_pos=(-0.391, -0.194), resolution=(1280, 720),
     #                             rgb=True)
     #     touch_template = Template(r"assets/NOTICE_CLOSE.png", record_pos=(0.431, -0.22), resolution=(1280, 720))
-    #     return self.find_click(rec_template, timeout=0.5, touch_template=touch_template)
+    #     return find_click(rec_template, timeout=0.5, touch_template=touch_template)
 
     # 深渊结算弹窗
     @run_until_true
@@ -62,3 +63,4 @@ popup_list = [popup_handler.handle_login_event, popup_handler.handle_7day_reward
               popup_handler.handle_abyss_settle]
 
 # Template(r"NEW_ITEM_POPUP.png", (0.289, -0.01))
+

@@ -1,6 +1,6 @@
 from typing import Dict
 
-from zafkiel import Template, logger
+from zafkiel import Template, logger, screenshot, touch, find_click
 from zafkiel.ocr import Digit, Keyword
 from zafkiel.ui import UI
 
@@ -26,7 +26,7 @@ class Missions(UI):
         # self.ui_additional()
 
         # 领凭证奖励
-        screen = self.screenshot()
+        screen = screenshot()
         ocr_current_level = Digit(Template(r"CURRENT_BP_LEVEL.png", (-0.29, -0.178)))
         current_level = ocr_current_level.ocr_single_line(screen)
         logger.info(f'Current BP level: {current_level}')
@@ -37,33 +37,33 @@ class Missions(UI):
 
         # TODO:65级以后右端顶到头，领取位置变了
         if current_level >= reward_level:
-            if self.touch(Template(r"BP_REWARD.png", (-0.179, -0.054)), blind=True):
+            if touch(Template(r"BP_REWARD.png", (-0.179, -0.054)), blind=True):
                 popup_handler.handle_bp_reward()
-                self.find_click(Template(r"BP_REWARD_CONFIRM.png", (0.141, 0.173)))
+                find_click(Template(r"BP_REWARD_CONFIRM.png", (0.141, 0.173)))
                 logger.info('BP rewards claim completed')
 
     def claim_daily_rewards(self):
         self.ui_goto(page_missions, TPL_BP_MISSIONS_TAB)
-        if self.find_click(Template(r"QUICK_CLAIM.png", (0.418, -0.187), Keyword('一键领取'), rgb=True), ocr_mode=1):
-            self.find_click(TPL_CONFIRM_BUTTON)
+        if find_click(Template(r"QUICK_CLAIM.png", (0.418, -0.187), Keyword('一键领取'), rgb=True), ocr_mode=1):
+            find_click(TPL_CONFIRM_BUTTON)
             logger.info('Daily rewards claim completed')
 
         ocr = Digit(Template(r"DAILY_BP.png", (-0.273, 0.231)))
-        daily_bp = ocr.ocr_single_line(self.screenshot())
+        daily_bp = ocr.ocr_single_line(screenshot())
         logger.info(f'Daily BP: {daily_bp}')
         click = False
         if daily_bp >= 600:
-            click = self.find_click(Template(r"DAILY_REWARD_600.png", (0.449, 0.241)))
+            click = find_click(Template(r"DAILY_REWARD_600.png", (0.449, 0.241)))
         elif daily_bp >= 450:
-            click = self.find_click(Template(r"DAILY_REWARD_450.png", (0.312, 0.241)))
+            click = find_click(Template(r"DAILY_REWARD_450.png", (0.312, 0.241)))
         elif daily_bp >= 300:
-            click = self.find_click(Template(r"DAILY_REWARD_300.png", (0.175, 0.241)))
+            click = find_click(Template(r"DAILY_REWARD_300.png", (0.175, 0.241)))
         elif daily_bp >= 200:
-            click = self.find_click(Template(r"DAILY_REWARD_200.png", (0.037, 0.241)))
+            click = find_click(Template(r"DAILY_REWARD_200.png", (0.037, 0.241)))
         elif daily_bp >= 100:
-            click = self.find_click(Template(r"DAILY_REWARD_100.png", (-0.1, 0.241)))
+            click = find_click(Template(r"DAILY_REWARD_100.png", (-0.1, 0.241)))
         if click:
-            self.find_click(TPL_CONFIRM_BUTTON)
+            find_click(TPL_CONFIRM_BUTTON)
 
     def run(self):
         # self.get_popup_list(popup_list)

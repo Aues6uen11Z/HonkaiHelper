@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 from typing import Dict
 
-from zafkiel import Template, logger
+from zafkiel import Template, logger, wait, touch, stop_app, auto_setup, sleep, exists, find_click
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
@@ -42,10 +42,9 @@ class Login(UI):
 
     def handle_app_login(self):
 
-        self.wait(Template(r"LOGIN_FLAG.png", (0.406, 0.233), rgb=True),
-                  timeout=1200, interval=3, interval_func=self.check_update)
-        self.touch(Template(r"LOGIN_CLICK.png", (-0.002, -0.031)),
-                   times=2, blind=True)
+        wait(Template(r"LOGIN_FLAG.png", (0.406, 0.233), rgb=True),
+             timeout=1200, interval=3, interval_func=self.check_update)
+        touch(Template(r"LOGIN_CLICK.png", (-0.002, -0.031)), times=2, blind=True)
 
         while True:
             if self.ui_additional():
@@ -53,7 +52,7 @@ class Login(UI):
             if popup_handler.handle_abyss_settle():
                 continue
             if self.ui_page_appear(page_main):
-                self.sleep(3)
+                sleep(3)
                 if not self.ui_ensure(page_main):
                     logger.info('Game login successful')
                     break
@@ -61,17 +60,17 @@ class Login(UI):
         return True
 
     def app_stop(self):
-        self.stop_app()
+        stop_app()
 
     def app_start(self):
         subprocess.Popen([self.config['General']['Game']['game_path']])
         # date = datetime.datetime.now().strftime("%Y-%m-%d")
         # self.auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
-        self.auto_setup(str(Path.cwd()), devices=["WindowsPlatform:///?title=崩坏3", ])
+        auto_setup(str(Path.cwd()), devices=["WindowsPlatform:///?title=崩坏3", ])
         self.manage_log()
         self.get_popup_list(popup_list)  # TODO: Move to program start instead of game start
 
-        self.sleep(15)
+        sleep(15)
         self.handle_app_login()
 
     def app_restart(self):
@@ -79,9 +78,10 @@ class Login(UI):
         self.app_start()
         self.handle_app_login()
 
-    def check_update(self):
-        if self.exists(Template(r"LOGIN_UPDATE.png", (0.002, -0.129))):
-            self.find_click(Template(r"DOWNLOAD_CONFIRM.png", (0.0, 0.116)))
+    @staticmethod
+    def check_update():
+        if exists(Template(r"LOGIN_UPDATE.png", (0.002, -0.129))):
+            find_click(Template(r"DOWNLOAD_CONFIRM.png", (0.0, 0.116)))
             logger.info('Game updating')
-            if self.find_click(Template(r"DOWNLOAD_DONE.png", (0.0, 0.048), Keyword('确定')), timeout=1200):
+            if find_click(Template(r"DOWNLOAD_DONE.png", (0.0, 0.048), Keyword('确定')), timeout=1200):
                 logger.info('Game update completed')

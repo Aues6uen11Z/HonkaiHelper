@@ -145,3 +145,4 @@ tasks/**/*.png
 abyss/
 config/config.json
 tools/
+.vscode/
