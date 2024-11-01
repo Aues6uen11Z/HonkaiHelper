@@ -63,7 +63,7 @@ class Armada(UI):
         self.ui_goto(page_commission)
         ocr = DigitCounter(Template(r"COMMISSION_COUNT.png", (0.43, 0.242)))
 
-        loop_timer = Timer(0, 20).start()
+        loop_timer = Timer(0, 30).start()
         while True:
             if loop_timer.reached():
                 raise LoopError('The operation has looped too many times')
