@@ -62,14 +62,14 @@ python main.py
 
 ## 注意事项
 
-1. 项目更新有时会涉及到依赖更新，若从源码运行，使用时请确保你的zafkiel版本是最新的
+1. 项目更新有时会涉及到依赖更新，若从源码运行，使用时请确保你的zafkiel版本与requirements.txt一致。
 
    ```shell
    # 在你的虚拟环境内
    pip install --upgrade zafkiel
    ```
 
-2. 目前新版本尚未开发完全，不能保证在每一个人的电脑上都完美运行，出现问题可以在issue中提出，记得附上日志
+2. 目前新版本尚未开发完全，不能保证在每一个人的电脑上都完美运行，出现问题可以在issue中提出，记得附上日志（注意**是.log文件，不是log.txt**）
 
 3. Gitee仓库仅用作同步，不要在那里开issue
 
@@ -82,4 +82,4 @@ python main.py
 
 ## 开发
 
-新版本使用了[Zafkiel](https://github.com/Aues6uen11Z/Zafkiel)库，结合了[Airtest](https://github.com/AirtestProject/Airtest)和[StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot)的一些优点，目前还有很多地方需要完善，文档后面有时间了会慢慢补上，有兴趣可以先自行阅读源码。
+新版本使用了[Zafkiel](https://github.com/Aues6uen11Z/Zafkiel)库，结合了[Airtest](https://github.com/AirtestProject/Airtest)和[StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot)的一些优点，欢迎尝试。
