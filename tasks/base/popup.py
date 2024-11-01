@@ -8,8 +8,8 @@ from tasks.base.page import TPL_CONFIRM_BUTTON
 
 class PopupHandler:
     # 凭证奖励弹窗
-    @staticmethod
-    def handle_bp_reward():
+    @run_until_true
+    def handle_bp_reward(self):
         rec_template = Template(r"POPUP_BP_FLAG.png", (-0.137, 0.218), Keyword('升级凭证'))
         touch_template = Template(r"POPUP_BP_CLAIM.png", (0.137, 0.218), Keyword('领取奖励'))
         if find_click(rec_template, timeout=0, touch_template=touch_template):
@@ -26,7 +26,7 @@ class PopupHandler:
     @run_until_true
     def handle_7day_reward(self):
         if find_click(Template(r"7DAY_REWARD_CLAIM.png", (0.084, 0.234)), timeout=0):
-            if find_click(Template(r"7DAY_REWARD_CONFIRM.png", (-0.001, 0.145))):
+            if find_click(Template(r"7DAY_REWARD_CONFIRM.png", (-0.001, 0.145)), timeout=3):
                 return True
 
         return False
@@ -35,7 +35,7 @@ class PopupHandler:
     @run_until_true
     def handle_signin_reward(self):
         if find_click(Template(r"SIGNIN_REWARD_CLAIM.png", (0.083, 0.248)), timeout=0):
-            if find_click(Template(r"SIGNIN_REWARD_CONFIRM.png", (-0.001, 0.134))):
+            if find_click(Template(r"SIGNIN_REWARD_CONFIRM.png", (-0.001, 0.134)), timeout=3):
                 return True
 
         return False
@@ -51,7 +51,7 @@ class PopupHandler:
     # 深渊结算弹窗
     @run_until_true
     def handle_abyss_settle(self):
-        if exists(Template(r"ABYSS_SETTLE.png", (-0.232, 0.113), Keyword('关卡积分'))):
+        if exists(Template(r"ABYSS_SETTLE.png", (0.005, -0.102), Keyword('终极区')), ocr_mode=1):
             touch(Template(r"POPUP_MARGIN.png", (0.467, -0.252)), blind=True)
             return True
         return False
@@ -59,7 +59,7 @@ class PopupHandler:
 
 popup_handler = PopupHandler()
 popup_list = [popup_handler.handle_login_event, popup_handler.handle_7day_reward, popup_handler.handle_signin_reward,
-              popup_handler.handle_abyss_settle]
+              popup_handler.handle_abyss_settle, popup_handler.handle_bp_reward]
 
 # Template(r"NEW_ITEM_POPUP.png", (0.289, -0.01))
 
