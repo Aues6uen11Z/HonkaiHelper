@@ -50,15 +50,14 @@ def all_tasks(config):
         logger.exception(e)
         raise
 
-    # finally:
-    #     simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
+    finally:
+        simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
 
 
 def single_task(config, task):
     try:
         if task != 'login':
-            auto_setup(str(Path.cwd()), devices=["WindowsPlatform:///?title=崩坏3", ])
-            # auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
+            auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
 
         if task == 'armada':
             Armada(config).run()
@@ -72,7 +71,7 @@ def single_task(config, task):
             Login(config).app_start()
         elif task == 'logout':
             Login(config).app_stop()
-            # simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
+            simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
         elif task == 'mail':
             Mail(config).run()
         elif task == 'mission':
@@ -80,7 +79,7 @@ def single_task(config, task):
         elif task == 'sweep':
             Sweep(config).run()
     except Exception as e:
-        # simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
+        simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
         logger.error(e)
         raise
 
