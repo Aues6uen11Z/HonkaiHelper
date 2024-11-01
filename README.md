@@ -69,7 +69,7 @@ python main.py
    pip install --upgrade zafkiel
    ```
 
-2. 目前新版本尚未开发完全，不能保证在每一个人的电脑上都完美运行，出现问题可以在issue中提出，记得附上日志（**.log文件，不是log.txt**）
+2. 目前新版本尚未开发完全，不能保证在每一个人的电脑上都完美运行，出现问题可以在issue中提出，记得附上日志
 
 3. Gitee仓库仅用作同步，不要在那里开issue
 
@@ -82,4 +82,4 @@ python main.py
 
 ## 开发
 
-新版本使用了[Zafkiel](https://github.com/Aues6uen11Z/Zafkiel)库，结合了[Airtest](https://github.com/AirtestProject/Airtest)和[StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot)的一些优点，欢迎尝试。
+新版本使用了[Zafkiel](https://github.com/Aues6uen11Z/Zafkiel)库，结合了[Airtest](https://github.com/AirtestProject/Airtest)和[StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot)的一些优点，目前还有很多地方需要完善，文档后面有时间了会慢慢补上，有兴趣可以先自行阅读源码。
