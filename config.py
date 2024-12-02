@@ -116,7 +116,7 @@ class TaskMission1(BaseModel):
 
 class TaskMission2(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command='py main.py -t mission', priority=15, priority_enabled=False
+        command='py main.py -t mission', priority=8, priority_enabled=False
     ), alias='_Base')
 
 
@@ -141,7 +141,7 @@ class TaskWeeklyReward(BaseModel):
         armada_contribution_time: Argument = Argument(type='input', value=0.0, hide=True)
 
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command='py main.py -t weekly_reward', priority=8
+        command='py main.py -t weekly_reward', priority=9
     ), alias='_Base')
     WeeklyEvent: GroupWeeklyEvent = GroupWeeklyEvent()
 

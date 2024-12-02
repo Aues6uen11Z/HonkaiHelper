@@ -71,7 +71,7 @@
     },
     "Mission2": {
       "_Base": {
-        "priority": 99,
+        "priority": 8,
         "priority_enabled": false,
         "command": "py main.py -t mission",
         "command_enabled": true
@@ -129,7 +129,7 @@
   "Weekly": {
     "WeeklyReward": {
       "_Base": {
-        "priority": 8,
+        "priority": 9,
         "priority_enabled": true,
         "command": "py main.py -t weekly_reward",
         "command_enabled": true
