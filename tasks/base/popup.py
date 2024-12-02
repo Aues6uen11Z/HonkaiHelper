@@ -1,7 +1,6 @@
-from zafkiel import Template, find_click, screenshot, touch, exists
+from zafkiel import Template, find_click, touch, exists, sleep
 from zafkiel.decorator import run_until_true
 from zafkiel.ocr import Keyword
-from zafkiel.utils import is_color_similar, crop
 
 from tasks.base.page import TPL_CONFIRM_BUTTON
 
@@ -52,6 +51,7 @@ class PopupHandler:
     @run_until_true
     def handle_abyss_settle(self):
         if exists(Template(r"ABYSS_SETTLE.png", (0.005, -0.102), Keyword('终极区')), ocr_mode=1):
+            sleep(0.5)
             touch(Template(r"POPUP_MARGIN.png", (0.467, -0.252)), blind=True)
             return True
         return False
@@ -60,6 +60,4 @@ class PopupHandler:
 popup_handler = PopupHandler()
 popup_list = [popup_handler.handle_login_event, popup_handler.handle_7day_reward, popup_handler.handle_signin_reward,
               popup_handler.handle_abyss_settle, popup_handler.handle_bp_reward]
-
-# Template(r"NEW_ITEM_POPUP.png", (0.289, -0.01))
 

@@ -1,29 +1,19 @@
-from typing import Dict
-
 from zafkiel import Template, logger, screenshot, touch, find_click
 from zafkiel.ocr import Digit, Keyword
 from zafkiel.ui import UI
 
-from tasks.base.page import page_missions, TPL_CONFIRM_BUTTON
+from config import Config
+from tasks.base.page import page_missions, TPL_CONFIRM_BUTTON, TPL_NEW_ITEM
 from tasks.base.popup import popup_list, popup_handler
 from tasks.base.switch import TPL_BP_MISSIONS_TAB, TPL_BP_REWARDS_TAB
 
 
 class Missions(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     def claim_bp_rewards(self):
         self.ui_goto(page_missions, TPL_BP_REWARDS_TAB)
-        # # 领每周箱子，todo:写进配置，每周领过一次后不再识别；改逻辑
-        # if self.find_click(Template(r"BP_CHEST.png", (0.334, 0.203))):
-        #     while True:
-        #         if self.find_click(Template(r"BP_CHEST_CLAIM.png", (-0.134, 0.12), Keyword('领取')), timeout=0):
-        #             self.sleep(2)
-        #         self.find_click(TPL_CONFIRM_BUTTON)
-        #         popup_handler.handle_bp_reward()
-        #
-        # self.ui_additional()
 
         # 领凭证奖励
         screen = screenshot()

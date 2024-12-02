@@ -10,7 +10,7 @@ class Argument(BaseModel):
     Minimum setting
     """
     type: Literal['input', 'select', 'checkbox'] = 'input'
-    value: Union[str, bool]
+    value: Union[str, bool, float]
     option: List[str] = []
     hide: bool = False
 
@@ -38,7 +38,7 @@ class TaskGeneral(BaseModel):
         is_background_enabled: bool = True
         config_path: str = './examples/HonkaiHelper/config/config.json'
         config_path_enabled: bool = True
-    
+
     class GroupGame(BaseModel):
         game_path: Argument = Argument(type='input', value='')
         log_retain: Argument = Argument(type='select', value='1week', option=['1day', '3days', '1week', '1month'])
@@ -52,7 +52,7 @@ class TaskUpdate(BaseModel):
         """
         Git repository, python virtual environment update settings
         """
-        repo_url: str = 'https://github.com/Aues6uen11Z/HonkaiHelper'
+        repo_url: str = 'https://gitee.com/aues6uen11z/HonkaiHelper'
         repo_url_enabled: bool = True
         branch: str = 'master'
         branch_enabled: bool = True
@@ -69,61 +69,81 @@ class TaskUpdate(BaseModel):
 class TaskArmada(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t armada', priority=5
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskDormBonus(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t dorm_bonus', priority=2
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskErrand(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t errand', priority=3
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskExpedition(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t expedition', priority=4
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskLogin(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t login', priority=0, priority_enabled=False
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskLogout(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t logout', priority=100, priority_enabled=False
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskMail(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t mail', priority=7
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskMission1(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t mission', priority=1, priority_enabled=False
-        ), alias='_Base')
+    ), alias='_Base')
 
 
 class TaskMission2(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command='py main.py -t mission', priority=99, priority_enabled=False
-        ), alias='_Base')
+        command='py main.py -t mission', priority=15, priority_enabled=False
+    ), alias='_Base')
 
 
 class TaskSweep(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command='py main.py -t sweep', priority=6
-        ), alias='_Base')
+    ), alias='_Base')
+
+
+class TaskWeeklyReward(BaseModel):
+    class GroupWeeklyEvent(BaseModel):
+        share: Argument = Argument(type='checkbox', value=True)
+        share_time: Argument = Argument(type='input', value=0.0, hide=True)
+
+        homo_chest: Argument = Argument(type='checkbox', value=True)
+        homo_chest_time: Argument = Argument(type='input', value=0.0, hide=True)
+
+        bp_chest: Argument = Argument(type='checkbox', value=True)
+        bp_chest_time: Argument = Argument(type='input', value=0.0, hide=True)
+
+        armada_contribution: Argument = Argument(type='checkbox', value=True)
+        armada_contribution_time: Argument = Argument(type='input', value=0.0, hide=True)
+
+    Base: GroupCustomBase = Field(GroupCustomBase(
+        command='py main.py -t weekly_reward', priority=8
+    ), alias='_Base')
+    WeeklyEvent: GroupWeeklyEvent = GroupWeeklyEvent()
 
 
 # 任务组级别
@@ -145,10 +165,15 @@ class MenuDaily(BaseModel):
     Armada: TaskArmada = TaskArmada()
 
 
+class MenuWeekly(BaseModel):
+    WeeklyReward: TaskWeeklyReward = TaskWeeklyReward()
+
+
 # 项目级别
-class Config(BaseModel):
+class UIContent(BaseModel):
     Project: MenuProject = MenuProject()
     Daily: MenuDaily = MenuDaily()
+    Weekly: MenuWeekly = MenuWeekly()
 
 
 def gen_i18n(config: BaseModel, lang: str):
@@ -190,11 +215,35 @@ def gen_i18n(config: BaseModel, lang: str):
 
 
 def export() -> None:
-    config = Config()
+    args = UIContent()
     with open('config/args.json', 'w') as f:
-        f.write(config.model_dump_json(indent=2, by_alias=True))
+        f.write(args.model_dump_json(indent=2, by_alias=True))
 
-    gen_i18n(config, 'zh-CN')
+    gen_i18n(args, 'zh-CN')
+
+
+class Config:
+    def __init__(self, config_path):
+        self.config_path = config_path
+        with open('config/args.json', 'r') as f:
+            args = json.load(f)
+        with open(config_path, 'r') as f:
+            self.data = json.load(f)
+
+        # 只是为了校验数据
+        for menu, tasks in args.items():
+            for task, groups in tasks.items():
+                for group, args in groups.items():
+                    if group == '_Base':
+                        continue
+                    for argument, info in args.items():
+                        info['value'] = self.data[task][group][argument]
+        UIContent.parse_obj(args)
+
+    def update(self, task, group, argument, value):
+        self.data[task][group][argument] = value
+        with open(self.config_path, 'w') as f:
+            json.dump(self.data, f, ensure_ascii=False, indent=2)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ from pathlib import Path
 from loguru import logger
 from zafkiel import simple_report, auto_setup
 
+from config import Config
 from tasks.armada import Armada
 from tasks.dorm_bonus import DormBonus
 from tasks.errand import Errand
@@ -16,6 +17,7 @@ from tasks.login import Login
 from tasks.mail import Mail
 from tasks.mission import Missions
 from tasks.sweep import Sweep
+from tasks.weekly_reward import WeeklyReward
 
 logger.remove()
 logger.add(sys.stdout, level="INFO", format="<green>{time:HH:mm:ss}</green> | "
@@ -42,6 +44,7 @@ def all_tasks(config):
         Sweep(config).run()
         Missions(config).run()
         Mail(config).run()
+        WeeklyReward(config).run()
 
         # 结束游戏进程
         Login(config).app_stop()
@@ -78,6 +81,8 @@ def single_task(config, task):
             Missions(config).run()
         elif task == 'sweep':
             Sweep(config).run()
+        elif task == 'weekly_reward':
+            WeeklyReward(config).run()
     except Exception as e:
         simple_report(__file__, log_path=Path(f'./log/{date}/report').resolve(), output=f'./log/{date}/report.html')
         logger.error(e)
@@ -88,9 +93,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--task', '-t',
                         choices=["armada", "dorm_bonus", "errand", "expedition", "login", "logout", "mail",
-                                 "mission", "sweep"],
+                                 "mission", "sweep", "weekly_reward"],
                         help='Task name, one of "armada, dorm_bonus, errand, expedition, login, logout, mail, '
-                             'mission, sweep"')
+                             'mission, sweep, weekly_reward"')
     parser.add_argument('--config_path', '-c', default='./config/config.json')
     args = parser.parse_args()
 
@@ -99,12 +104,10 @@ def main():
         if not config_path.exists():
             logger.error(f'{config_path} not found')
             return
-        with open(config_path, 'r', encoding='utf-8') as f:
-            config = json.load(f)
+        config = Config(config_path)
         single_task(config, args.task)
     else:
-        with open('./config/default.json', 'r', encoding='utf-8') as f:
-            config = json.load(f)
+        config = Config('./config/default.json')
         all_tasks(config)
 
 

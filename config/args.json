@@ -31,7 +31,7 @@
     },
     "Update": {
       "_Base": {
-        "repo_url": "https://github.com/Aues6uen11Z/HonkaiHelper",
+        "repo_url": "https://gitee.com/aues6uen11z/HonkaiHelper",
         "repo_url_enabled": true,
         "branch": "master",
         "branch_enabled": true,
@@ -123,6 +123,66 @@
         "priority_enabled": true,
         "command": "py main.py -t armada",
         "command_enabled": true
+      }
+    }
+  },
+  "Weekly": {
+    "WeeklyReward": {
+      "_Base": {
+        "priority": 8,
+        "priority_enabled": true,
+        "command": "py main.py -t weekly_reward",
+        "command_enabled": true
+      },
+      "WeeklyEvent": {
+        "share": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hide": false
+        },
+        "share_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hide": true
+        },
+        "homo_chest": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hide": false
+        },
+        "homo_chest_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hide": true
+        },
+        "bp_chest": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hide": false
+        },
+        "bp_chest_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hide": true
+        },
+        "armada_contribution": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hide": false
+        },
+        "armada_contribution_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hide": true
+        }
       }
     }
   }

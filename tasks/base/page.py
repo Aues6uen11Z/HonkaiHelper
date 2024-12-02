@@ -7,6 +7,7 @@ from tasks.base.switch import switch_missions, switch_expeditions, TPL_GOTO_ATTA
 TPL_RETURN_BUTTON = Template(r"RETURN_BUTTON.png", (-0.444, -0.256), Keyword('返回'))
 TPL_HOME_BUTTON = Template(r"HOME_BUTTON.png", (-0.298, -0.257), Keyword('主菜单'))
 TPL_CONFIRM_BUTTON = Template(r"CONFIRM_BUTTON.png", (0.0, 0.144), Keyword('确定'))
+TPL_NEW_ITEM = Template(r"NEW_ITEM_POPUP.png", (0.289, -0.01))
 
 # 主界面
 page_main = Page(Template(r"MAIN_FLAG.png", (0.281, 0.043), rgb=True))
@@ -42,6 +43,15 @@ page_armada_rewards.link(TPL_HOME_BUTTON,
                          destination=page_main)
 page_commission.link(Template(r"COMMISSION_GOTO_REWARD.png", (0.439, -0.104), Keyword('舰团奖池')),
                      destination=page_armada_rewards)
+
+# 舰团贡献界面
+page_armada_contribution = Page(Template(r"ARMADA_CONTRIBUTION_FLAG.png", (-0.395, -0.184), Keyword('舰团贡献')))
+page_armada_contribution.link(TPL_RETURN_BUTTON,
+                              destination=page_armada)
+page_armada_contribution.link(TPL_HOME_BUTTON,
+                              destination=page_main)
+page_armada.link(Template(r"ARMADA_GOTO_CONTRIBUTION.png", (0.232, 0.23), Keyword('舰团贡献')),
+                 destination=page_armada_contribution)
 
 # BP任务界面
 page_missions = Page(Template(r"GOTO_BP_MISSIONS.png", (-0.417, -0.171), Keyword('作战任务')),

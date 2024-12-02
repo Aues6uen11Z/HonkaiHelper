@@ -1,16 +1,14 @@
-from typing import Dict
-
 from zafkiel import Template, logger, Timer, find_click, exists
 from zafkiel.exception import LoopError
-from zafkiel.ocr import Ocr, DigitCounter, Keyword
+from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
-from zafkiel.utils import crop, color_exists
 
-from tasks.base.page import page_errands, TPL_RETURN_BUTTON, TPL_CONFIRM_BUTTON
+from config import Config
+from tasks.base.page import page_errands, TPL_CONFIRM_BUTTON
 
 
 class Errand(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     @staticmethod
@@ -22,7 +20,7 @@ class Errand(UI):
 
             find_click(Template(r"QUICK_ERRAND.png", (0.283, 0.251), Keyword('一键打工')))
             if find_click(Template(r"QUICK_ERRAND_CONFIRM.png", (0.141, 0.204), Keyword('一键打工'), rgb=True),
-                               times=2):
+                          times=2):
                 logger.info('Errand dispatch completed')
                 break
             if exists(Template(r"ERRAND_DISABLE.png", (0.141, 0.203), rgb=True)):

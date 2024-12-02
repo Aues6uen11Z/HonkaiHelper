@@ -3,18 +3,18 @@ import shutil
 import time
 from pathlib import Path
 import subprocess
-from typing import Dict
 
 from zafkiel import Template, logger, wait, touch, stop_app, auto_setup, sleep, exists, find_click
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
+from config import Config
 from tasks.base.popup import popup_list, popup_handler
 from tasks.base.page import page_main
 
 
 class Login(UI):
-    def __init__(self, config: Dict):
+    def __init__(self, config: Config):
         self.config = config
 
     def manage_log(self):
@@ -24,7 +24,7 @@ class Login(UI):
             '1week': 7,
             '1month': 30,
         }
-        retain_days = log_retain_map.get(self.config['General']['Game']['log_retain'], 7)
+        retain_days = log_retain_map.get(self.config.data['General']['Game']['log_retain'], 7)
 
         current_time = time.time()
         log_path = Path('./log')
@@ -63,7 +63,7 @@ class Login(UI):
         stop_app()
 
     def app_start(self):
-        subprocess.Popen([self.config['General']['Game']['game_path']])
+        subprocess.Popen([self.config.data['General']['Game']['game_path']])
         date = datetime.datetime.now().strftime("%Y-%m-%d")
         auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
         self.manage_log()

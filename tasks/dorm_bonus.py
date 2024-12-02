@@ -1,14 +1,13 @@
-from typing import Dict
-
 from zafkiel import Template, logger, find_click, screenshot
 from zafkiel.ocr import Digit
 from zafkiel.ui import UI
 
+from config import Config
 from tasks.base.page import page_dorm
 
 
 class DormBonus(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     def claim_stamina(self):

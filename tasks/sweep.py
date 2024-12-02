@@ -1,16 +1,15 @@
-from typing import Dict
-
 from zafkiel import Template, logger, Timer, find_click, exists
 from zafkiel.exception import LoopError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
+from config import Config
 from tasks.base.page import page_battle, page_lite, TPL_CONFIRM_BUTTON
 from tasks.base.switch import TPL_BATTLE_ATTACK_TAB
 
 
 class Sweep(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     def run(self):

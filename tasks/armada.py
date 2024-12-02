@@ -1,16 +1,15 @@
-from typing import Dict
-
 from zafkiel import Template, logger, Timer, exists, find_click, touch, screenshot
 from zafkiel.decorator import run_until_true
 from zafkiel.exception import LoopError
 from zafkiel.ocr import DigitCounter, Keyword
 from zafkiel.ui import UI
 
+from config import Config
 from tasks.base.page import page_armada, page_commission, page_armada_rewards, TPL_CONFIRM_BUTTON
 
 
 class Armada(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     def claim_rewards(self):

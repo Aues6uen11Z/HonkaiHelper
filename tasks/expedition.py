@@ -1,16 +1,15 @@
-from typing import Dict
-
 from zafkiel import Template, Timer, logger, find_click, exists
 from zafkiel.exception import LoopError
 from zafkiel.ocr import Ocr, Keyword
 from zafkiel.ui import UI
 
-from tasks.base.page import page_expeditions, TPL_RETURN_BUTTON, TPL_CONFIRM_BUTTON
+from config import Config
+from tasks.base.page import page_expeditions, TPL_CONFIRM_BUTTON
 from tasks.base.switch import TPL_EXPEDITION_MATL_TAB, TPL_EXPEDITION_FRAG_TAB
 
 
 class Expeditions(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     # 远征派遣

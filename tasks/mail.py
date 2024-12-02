@@ -1,15 +1,14 @@
-from typing import Dict
-
 from zafkiel import Template, logger, Timer, exists, find_click
 from zafkiel.exception import LoopError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
+from config import Config
 from tasks.base.page import page_mail, TPL_CONFIRM_BUTTON
 
 
 class Mail(UI):
-    def __init__(self, config: Dict = None):
+    def __init__(self, config: Config = None):
         self.config = config
 
     def run(self):

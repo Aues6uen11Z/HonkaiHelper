@@ -5,6 +5,9 @@
     },
     "Daily": {
       "name": "日常"
+    },
+    "Weekly": {
+      "name": "周常"
     }
   },
   "Task": {
@@ -43,6 +46,9 @@
     },
     "Armada": {
       "name": "舰团奖励"
+    },
+    "WeeklyReward": {
+      "name": "周常奖励"
     }
   },
   "Game": {
@@ -61,6 +67,44 @@
       "3days": "3天",
       "1week": "1周",
       "1month": "1月"
+    }
+  },
+  "WeeklyEvent": {
+    "_info": {
+      "name": "奖励事件",
+      "help": ""
+    },
+    "share": {
+      "name": "每周分享",
+      "help": "需安排在活跃奖励2之后，否则不会运行"
+    },
+    "share_time": {
+      "name": "",
+      "help": ""
+    },
+    "homo_chest": {
+      "name": "吼姆秘宝",
+      "help": ""
+    },
+    "homo_chest_time": {
+      "name": "",
+      "help": ""
+    },
+    "bp_chest": {
+      "name": "历练值宝箱",
+      "help": ""
+    },
+    "bp_chest_time": {
+      "name": "",
+      "help": ""
+    },
+    "armada_contribution": {
+      "name": "舰团贡献奖励",
+      "help": ""
+    },
+    "armada_contribution_time": {
+      "name": "",
+      "help": ""
     }
   }
 }
