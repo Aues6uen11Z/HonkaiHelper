@@ -56,8 +56,15 @@ class PopupHandler:
             return True
         return False
 
+    # 月卡奖励
+    @run_until_true
+    def handle_monthly_card(self):
+        if find_click(Template(r"MONTHLY_CARD_CLAIM.png", (0.082, 0.234)), timeout=0):
+            if find_click(TPL_CONFIRM_BUTTON, timeout=3):
+                return True
+        return False
+
 
 popup_handler = PopupHandler()
 popup_list = [popup_handler.handle_login_event, popup_handler.handle_7day_reward, popup_handler.handle_signin_reward,
-              popup_handler.handle_abyss_settle, popup_handler.handle_bp_reward]
-
+              popup_handler.handle_abyss_settle, popup_handler.handle_bp_reward, popup_handler.handle_monthly_card]
