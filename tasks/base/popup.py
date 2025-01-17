@@ -25,9 +25,9 @@ class PopupHandler:
     @run_until_true
     def handle_7day_reward(self):
         if find_click(Template(r"7DAY_REWARD_CLAIM.png", (0.084, 0.234)), timeout=0):
-            if find_click(Template(r"7DAY_REWARD_CONFIRM.png", (-0.001, 0.145)), timeout=3):
+            # if find_click(Template(r"7DAY_REWARD_CONFIRM.png", (-0.001, 0.145)), timeout=3):
+            if find_click(TPL_CONFIRM_BUTTON, timeout=3):
                 return True
-
         return False
 
     # 每日签到奖励
@@ -36,7 +36,6 @@ class PopupHandler:
         if find_click(Template(r"SIGNIN_REWARD_CLAIM.png", (0.083, 0.248)), timeout=0):
             if find_click(Template(r"SIGNIN_REWARD_CONFIRM.png", (-0.001, 0.134)), timeout=3):
                 return True
-
         return False
 
     # 游戏公告，最近好像不弹了
@@ -50,7 +49,7 @@ class PopupHandler:
     # 深渊结算弹窗
     @run_until_true
     def handle_abyss_settle(self):
-        if exists(Template(r"ABYSS_SETTLE.png", (0.005, -0.102), Keyword('终极区')), ocr_mode=1):
+        if exists(Template(r"ABYSS_SETTLE.png", (0.019, 0.147), Keyword('结算奖励')), ocr_mode=1):
             sleep(0.5)
             touch(Template(r"POPUP_MARGIN.png", (0.467, -0.252)), blind=True)
             return True
