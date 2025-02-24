@@ -21,10 +21,10 @@ class WeeklyReward(UI):
         self.monday_4am = monday.replace(hour=4, minute=0, second=0, microsecond=0).timestamp()
 
     def share(self):
-        if not self.config.data['WeeklyReward']['WeeklyEvent']['share']:
+        if not self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['share']:
             return
 
-        if self.config.data['WeeklyReward']['WeeklyEvent']['share_time'] > self.monday_4am:
+        if self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['share_time'] > self.monday_4am:
             logger.info('Weekly sharing already completed')
             return
 
@@ -38,13 +38,13 @@ class WeeklyReward(UI):
         else:
             # 若已经手动完成
             logger.info('Weekly sharing already completed')
-        self.config.update('WeeklyReward', 'WeeklyEvent', 'share_time', time.time())
+        self.config.update('Weekly', 'WeeklyReward', 'WeeklyEvent', 'share_time', time.time())
 
     def homo_chest(self):
-        if not self.config.data['WeeklyReward']['WeeklyEvent']['homo_chest']:
+        if not self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['homo_chest']:
             return
 
-        if self.config.data['WeeklyReward']['WeeklyEvent']['homo_chest_time'] > self.monday_4am:
+        if self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['homo_chest_time'] > self.monday_4am:
             logger.info('Weekly homo chest already claimed')
             return
 
@@ -58,14 +58,14 @@ class WeeklyReward(UI):
             logger.info('Weekly homo chest claim completed')
         else:
             logger.info('Weekly homo chest already claimed')
-        self.config.update('WeeklyReward', 'WeeklyEvent', 'homo_chest_time', time.time())
+        self.config.update('Weekly', 'WeeklyReward', 'WeeklyEvent', 'homo_chest_time', time.time())
         find_click(TPL_RETURN_BUTTON)
 
     def bp_chest(self):
-        if not self.config.data['WeeklyReward']['WeeklyEvent']['bp_chest']:
+        if not self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['bp_chest']:
             return
 
-        if self.config.data['WeeklyReward']['WeeklyEvent']['bp_chest_time'] > self.monday_4am:
+        if self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['bp_chest_time'] > self.monday_4am:
             logger.info('Weekly bp chest already claimed')
             return
 
@@ -77,13 +77,13 @@ class WeeklyReward(UI):
             logger.info('Weekly bp chest claim completed')
         else:
             logger.info('Weekly bp chest already claimed')
-        self.config.update('WeeklyReward', 'WeeklyEvent', 'bp_chest_time', time.time())
+        self.config.update('Weekly', 'WeeklyReward', 'WeeklyEvent', 'bp_chest_time', time.time())
 
     def armada_contribution_reward(self):
-        if not self.config.data['WeeklyReward']['WeeklyEvent']['armada_contribution']:
+        if not self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['armada_contribution']:
             return
 
-        if self.config.data['WeeklyReward']['WeeklyEvent']['armada_contribution_time'] > self.monday_4am:
+        if self.config.data['Weekly']['WeeklyReward']['WeeklyEvent']['armada_contribution_time'] > self.monday_4am:
             logger.info('Armada contribution reward already claimed')
             return
 
@@ -91,10 +91,10 @@ class WeeklyReward(UI):
         if exists(Template(r"CONTRIBUTION_FULL.png", (-0.325, -0.123))):
             find_click(Template(r"CONTRIBUTION_REWARD.png", (-0.442, -0.122)))
             find_click(TPL_CONFIRM_BUTTON)
-            self.config.update('WeeklyReward', 'WeeklyEvent', 'armada_contribution_time', time.time())
+            self.config.update('Weekly', 'WeeklyReward', 'WeeklyEvent', 'armada_contribution_time', time.time())
             logger.info('Armada contribution reward claim completed')
         elif exists(Template(r"CONTRIBUTION_CLAIMED.png", (-0.324, -0.122))):
-            self.config.update('WeeklyReward', 'WeeklyEvent', 'armada_contribution_time', time.time())
+            self.config.update('Weekly', 'WeeklyReward', 'WeeklyEvent', 'armada_contribution_time', time.time())
             logger.info('Armada contribution reward already claimed')
         else:
             logger.info('Armada contribution reward not available')

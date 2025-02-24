@@ -24,7 +24,7 @@ class Login(UI):
             '1week': 7,
             '1month': 30,
         }
-        retain_days = log_retain_map.get(self.config.data['General']['Game']['log_retain'], 7)
+        retain_days = log_retain_map.get(self.config.data['Project']['General']['Game']['log_retain'], 7)
 
         current_time = time.time()
         log_path = Path('./log')
@@ -63,7 +63,7 @@ class Login(UI):
         stop_app()
 
     def app_start(self):
-        subprocess.Popen([self.config.data['General']['Game']['game_path']])
+        subprocess.Popen([self.config.data['Project']['General']['Game']['game_path']])
         date = datetime.datetime.now().strftime("%Y-%m-%d")
         auto_setup(str(Path.cwd()), logdir=f'./log/{date}/report', devices=["WindowsPlatform:///?title=崩坏3", ])
         self.manage_log()

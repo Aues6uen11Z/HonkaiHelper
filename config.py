@@ -267,15 +267,15 @@ class Config:
         # 只是为了校验数据
         for menu, tasks in args.items():
             for task, groups in tasks.items():
-                for group, args in groups.items():
+                for group, items in groups.items():
                     if group == '_Base':
                         continue
-                    for Item, info in args.items():
-                        info['value'] = self.data[task][group][Item]
+                    for item, info in items.items():
+                        info['value'] = self.data[menu][task][group][item]
         UIContent.model_validate(args)
 
-    def update(self, task, group, Item, value):
-        self.data[task][group][Item] = value
+    def update(self, menu, task, group, item, value):
+        self.data[menu][task][group][item] = value
         with open(self.config_path, 'w') as f:
             json.dump(self.data, f, ensure_ascii=False, indent=2)
 
