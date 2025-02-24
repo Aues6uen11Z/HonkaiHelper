@@ -1,0 +1,348 @@
+{
+  "Project": {
+    "General": {
+      "_Base": {
+        "language": {
+          "type": "input",
+          "value": "中文",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "work_dir": {
+          "type": "input",
+          "value": "./repos/HonkaiHelper",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "background": {
+          "type": "input",
+          "value": false,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": true
+        },
+        "config_path": {
+          "type": "input",
+          "value": "./repos/HonkaiHelper/config/config.json",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      },
+      "Game": {
+        "game_path": {
+          "type": "input",
+          "value": "",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "log_retain": {
+          "type": "select",
+          "value": "1week",
+          "option": ["1day", "3days", "1week", "1month"],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    }
+  },
+  "Daily": {
+    "Login": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 31.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": true
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t login",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Logout": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": true
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t logout",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Mission1": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 6.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": true
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t mission",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Mission2": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 2.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": true
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t mission",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Sweep": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 3.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t sweep",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Mail": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 4.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t mail",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "DormBonus": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 5.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t dorm_bonus",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Expedition": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 5.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t expedition",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Errand": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 5.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t errand",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    },
+    "Armada": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 4.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t armada",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
+    }
+  },
+  "Weekly": {
+    "WeeklyReward": {
+      "_Base": {
+        "priority": {
+          "type": "input",
+          "value": 1.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "command": {
+          "type": "input",
+          "value": "py main.py -t weekly_reward",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      },
+      "WeeklyEvent": {
+        "share": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "share_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hidden": true,
+          "help": "",
+          "disabled": false
+        },
+        "homo_chest": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "homo_chest_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hidden": true,
+          "help": "",
+          "disabled": false
+        },
+        "bp_chest": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "bp_chest_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hidden": true,
+          "help": "",
+          "disabled": false
+        },
+        "armada_contribution": {
+          "type": "checkbox",
+          "value": true,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "armada_contribution_time": {
+          "type": "input",
+          "value": 0.0,
+          "option": [],
+          "hidden": true,
+          "help": "",
+          "disabled": false
+        }
+      }
+    }
+  }
+}
