@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 from typing import Literal, List, Union
 
-import anyconfig
 from pydantic import BaseModel, Field
 
 
@@ -166,6 +165,8 @@ class UIContent(BaseModel):
 
 
 def gen_i18n(lang: str):
+    import anyconfig
+    
     trans_path = f"./config/i18n/{lang}.json"
     template_path = "./config/template.json"
 
