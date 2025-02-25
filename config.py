@@ -48,7 +48,7 @@ class TaskGeneral(BaseModel):
         config_path: Item = Item('./repos/HonkaiHelper/config/config.json')
 
     class GroupGame(BaseModel):
-        game_path: Item = Item(type='input', value='')
+        game_path: Item = Item(type='file', value='')
         log_retain: Item = Item(type='select', value='1week', option=['1day', '3days', '1week', '1month'])
 
     Base: GroupGeneralBase = Field(GroupGeneralBase(), alias='_Base')
@@ -281,5 +281,5 @@ class Config:
 
 
 if __name__ == '__main__':
-    # export()
-    gen_i18n('中文')
+    export()
+    # gen_i18n('中文')

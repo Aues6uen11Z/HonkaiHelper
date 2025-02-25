@@ -1,20 +1,24 @@
 {
-    "General": {
+    "Project": {
+      "General": {
         "Game": {
-            "game_path": "G:\\Honkai Impact 3\\Games\\BH3.exe",
-            "log_retain": "1week"
+          "game_path": "",
+          "log_retain": "1week"
         }
+      }
     },
-    "WeeklyReward": {
+    "Weekly": {
+      "WeeklyReward": {
         "WeeklyEvent": {
-            "share": true,
-            "share_time": 0.0,
-            "homo_chest": true,
-            "homo_chest_time": 0.0,
-            "bp_chest": true,
-            "bp_chest_time": 0.0,
-            "armada_contribution": true,
-            "armada_contribution_time": 0.0
+          "share": true,
+          "share_time": 0,
+          "homo_chest": true,
+          "homo_chest_time": 0,
+          "bp_chest": true,
+          "bp_chest_time": 0,
+          "armada_contribution": true,
+          "armada_contribution_time": 0
         }
+      }
     }
-}
+  }

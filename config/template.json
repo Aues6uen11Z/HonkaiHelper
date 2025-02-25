@@ -37,7 +37,7 @@
       },
       "Game": {
         "game_path": {
-          "type": "input",
+          "type": "file",
           "value": "",
           "option": [],
           "hidden": false,
@@ -47,7 +47,12 @@
         "log_retain": {
           "type": "select",
           "value": "1week",
-          "option": ["1day", "3days", "1week", "1month"],
+          "option": [
+            "1day",
+            "3days",
+            "1week",
+            "1month"
+          ],
           "hidden": false,
           "help": "",
           "disabled": false
