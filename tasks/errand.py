@@ -4,7 +4,7 @@ from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
 from config import Config
-from tasks.base.page import page_errands, TPL_CONFIRM_BUTTON
+from tasks.base.page import TPL_RETURN_BUTTON, page_errands, TPL_CONFIRM_BUTTON
 
 
 class Errand(UI):
@@ -19,11 +19,10 @@ class Errand(UI):
                 raise LoopError('The operation has looped too many times')
 
             find_click(Template(r"QUICK_ERRAND.png", (0.283, 0.251), Keyword('一键打工')))
-            
-            find_click(Template(r"ERRAND_S+_CONFIRM.png", (0.136, 0.117), Keyword('确定')))
 
-            if find_click(Template(r"QUICK_ERRAND_CONFIRM.png", (0.141, 0.204), Keyword('一键打工'), rgb=True),
-                          times=2):
+            if find_click(Template(r"QUICK_ERRAND_CONFIRM.png", (0.141, 0.204), Keyword('一键打工'), rgb=True)):
+                if not find_click(Template(r"ERRAND_S+_CONFIRM.png", (0.136, 0.117), Keyword('确定')), times=2):
+                    find_click(TPL_RETURN_BUTTON)
                 logger.info('Errand dispatch completed')
                 break
             if exists(Template(r"ERRAND_DISABLE.png", (0.141, 0.203), rgb=True)):
