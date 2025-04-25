@@ -87,5 +87,5 @@ class Armada(UI):
 
     def run(self):
         self.ui_ensure(page_armada)
-        self.commission()
         self.claim_rewards()
+        self.commission()
