@@ -80,9 +80,13 @@ class TaskExpedition(BaseModel):
 
 
 class TaskLogin(BaseModel):
+    class GroupLogin(BaseModel):
+        confirm_time: Item = Item(type='input', value=3)
+    
     Base: GroupCustomBase = Field(GroupCustomBase(
         command=Item('py main.py -t login'), priority=Item(value=31, disabled=True)
     ), alias='_Base')
+    Login: GroupLogin = GroupLogin()
 
 
 class TaskLogout(BaseModel):
@@ -282,4 +286,4 @@ class Config:
 
 if __name__ == '__main__':
     export()
-    # gen_i18n('中文')
+    gen_i18n('中文')

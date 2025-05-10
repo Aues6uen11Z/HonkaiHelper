@@ -1,24 +1,31 @@
 {
-    "Project": {
-      "General": {
-        "Game": {
-          "game_path": "",
-          "log_retain": "1week"
-        }
+  "Project": {
+    "General": {
+      "Game": {
+        "game_path": "",
+        "log_retain": "1week"
       }
-    },
-    "Weekly": {
-      "WeeklyReward": {
-        "WeeklyEvent": {
-          "share": true,
-          "share_time": 0,
-          "homo_chest": true,
-          "homo_chest_time": 0,
-          "bp_chest": true,
-          "bp_chest_time": 0,
-          "armada_contribution": true,
-          "armada_contribution_time": 0
-        }
+    }
+  },
+  "Daily": {
+    "Login": {
+      "Login": {
+        "confirm_time": "3"
+      }
+    }
+  },
+  "Weekly": {
+    "WeeklyReward": {
+      "WeeklyEvent": {
+        "share": true,
+        "share_time": 0,
+        "homo_chest": true,
+        "homo_chest_time": 0,
+        "bp_chest": true,
+        "bp_chest_time": 0,
+        "armada_contribution": true,
+        "armada_contribution_time": 0
       }
     }
   }
+}

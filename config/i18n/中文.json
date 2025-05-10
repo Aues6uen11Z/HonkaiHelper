@@ -32,7 +32,18 @@
     "tasks": {
       "Login": {
         "name": "启动游戏",
-        "groups": {}
+        "groups": {
+          "Login": {
+            "name": "登录",
+            "help": "",
+            "items": {
+              "confirm_time": {
+                "name": "确认时间",
+                "help": "主页面出现多久视为登录成功\n网络较差可以适当延长此时间，防止卡在弹窗界面"
+              }
+            }
+          }
+        }
       },
       "Logout": {
         "name": "退出游戏",

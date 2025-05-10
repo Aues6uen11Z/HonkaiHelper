@@ -46,13 +46,22 @@ class Login(UI):
              timeout=1200, interval=3, interval_func=self.check_update)
         touch(Template(r"LOGIN_CLICK.png", (-0.002, -0.031)), times=2, blind=True)
 
+        try:
+            confirm_time = float(self.config.data['Daily']['Login']['Login']['confirm_time'])
+            if confirm_time < 3.0:
+                confirm_time = 3.0
+                logger.warning("Confirm time was less than 3.0, setting to minimum value of 3.0")
+        except:
+            confirm_time = 3.0
+            logger.warning("Invalid confirm_time in config, using default value of 3.0")
+
         while True:
             if self.ui_additional():
                 continue
             if popup_handler.handle_abyss_settle():
                 continue
             if self.ui_page_appear(page_main):
-                sleep(3)
+                sleep(confirm_time)
                 if not self.ui_ensure(page_main):
                     logger.info('Game login successful')
                     break

@@ -79,6 +79,16 @@
           "help": "",
           "disabled": false
         }
+      },
+      "Login": {
+        "confirm_time": {
+          "type": "input",
+          "value": 3.0,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
       }
     },
     "Logout": {
