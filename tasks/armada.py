@@ -14,6 +14,7 @@ class Armada(UI):
 
     def claim_rewards(self):
         logger.info('Start claiming armada rewards')
+        self.ui_goto(page_commission)
         loop_timer = Timer(0, 10).start()
         while True:
             if loop_timer.reached():
