@@ -43,9 +43,10 @@ class TaskGeneral(BaseModel):
         General settings for the project
         """
         language: Item = Item('中文')
-        work_dir: Item = Item('./repos/HonkaiHelper')
+        work_dir: Item = Item('./repos/HonkaiHelper', disabled=True)
         background: Item = Item(value=False, disabled=True)
-        config_path: Item = Item('./repos/HonkaiHelper/config/config.json')
+        config_path: Item = Item('./repos/HonkaiHelper/config/config.json', disabled=True)
+        log_path: Item = Item('./log', disabled=True)
 
     class GroupGame(BaseModel):
         game_path: Item = Item(type='file', value='')
@@ -57,25 +58,25 @@ class TaskGeneral(BaseModel):
 
 class TaskArmada(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t armada'), priority=Item(4)
+        command=Item('py main.py -t armada', disabled=True), priority=Item(4)
     ), alias='_Base')
 
 
 class TaskDormBonus(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t dorm_bonus'), priority=Item(5)
+        command=Item('py main.py -t dorm_bonus', disabled=True), priority=Item(5)
     ), alias='_Base')
 
 
 class TaskErrand(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t errand'), priority=Item(5)
+        command=Item('py main.py -t errand', disabled=True), priority=Item(5)
     ), alias='_Base')
 
 
 class TaskExpedition(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t expedition'), priority=Item(5)
+        command=Item('py main.py -t expedition', disabled=True), priority=Item(5)
     ), alias='_Base')
 
 
@@ -84,38 +85,38 @@ class TaskLogin(BaseModel):
         confirm_time: Item = Item(type='input', value=3)
     
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t login'), priority=Item(value=31, disabled=True)
+        command=Item('py main.py -t login', disabled=True), priority=Item(value=31, disabled=True)
     ), alias='_Base')
     Login: GroupLogin = GroupLogin()
 
 
 class TaskLogout(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t logout'), priority=Item(value=0, disabled=True)
+        command=Item('py main.py -t logout', disabled=True), priority=Item(value=0, disabled=True)
     ), alias='_Base')
 
 
 class TaskMail(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t mail'), priority=Item(value=4)
+        command=Item('py main.py -t mail', disabled=True), priority=Item(value=4)
     ), alias='_Base')
 
 
 class TaskMission1(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t mission'), priority=Item(value=6, disabled=True)
+        command=Item('py main.py -t mission', disabled=True), priority=Item(value=6, disabled=True)
     ), alias='_Base')
 
 
 class TaskMission2(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t mission'), priority=Item(value=2, disabled=True)
+        command=Item('py main.py -t mission', disabled=True), priority=Item(value=2, disabled=True)
     ), alias='_Base')
 
 
 class TaskSweep(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t sweep'), priority=Item(3)
+        command=Item('py main.py -t sweep', disabled=True), priority=Item(3)
     ), alias='_Base')
 
 
@@ -134,7 +135,7 @@ class TaskWeeklyReward(BaseModel):
         armada_contribution_time: Item = Item(type='input', value=0.0, hidden=True)
 
     Base: GroupCustomBase = Field(GroupCustomBase(
-        command=Item('py main.py -t weekly_reward'), priority=Item(1)
+        command=Item('py main.py -t weekly_reward', disabled=True), priority=Item(1)
     ), alias='_Base')
     WeeklyEvent: GroupWeeklyEvent = GroupWeeklyEvent()
 
