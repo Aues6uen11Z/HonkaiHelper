@@ -69,50 +69,69 @@ def all_tasks(config):
 
 
 def single_task(config, task):
-    try:
-        if task != "login":
-            auto_setup(
-                str(Path.cwd()),
-                logdir=f"./log/{date}/report",
-                devices=[
-                    "WindowsPlatform:///?title=崩坏3",
-                ],
-            )
-            UI().get_popup_list(popup_list)
+    max_retries = 3
+    retry_count = 0
+    
+    while retry_count < max_retries:
+        try:
+            if task != "login":
+                auto_setup(
+                    str(Path.cwd()),
+                    logdir=f"./log/{date}/report",
+                    devices=[
+                        "WindowsPlatform:///?title=崩坏3",
+                    ],
+                )
+                UI().get_popup_list(popup_list)
 
-        if task == "armada":
-            Armada(config).run()
-        elif task == "dorm_bonus":
-            DormBonus(config).run()
-        elif task == "errand":
-            Errand(config).run()
-        elif task == "expedition":
-            Expeditions(config).run()
-        elif task == "login":
-            Login(config).app_start()
-        elif task == "logout":
-            Login(config).app_stop()
-            simple_report(
-                __file__,
-                log_path=Path(f"./log/{date}/report").resolve(),
-                output=f"./log/{date}/report.html",
-            )
-        elif task == "mail":
-            Mail(config).run()
-        elif task == "mission":
-            Missions(config).run()
-        elif task == "sweep":
-            Sweep(config).run()
-        elif task == "weekly_reward":
-            WeeklyReward(config).run()
-    except Exception as e:
-        simple_report(
-            __file__,
-            log_path=Path(f"./log/{date}/report").resolve(),
-            output=f"./log/{date}/report.html",
-        )
-        logger.error(e)
-        raise
+            if task == "armada":
+                Armada(config).run()
+            elif task == "dorm_bonus":
+                DormBonus(config).run()
+            elif task == "errand":
+                Errand(config).run()
+            elif task == "expedition":
+                Expeditions(config).run()
+            elif task == "login":
+                Login(config).app_start()
+            elif task == "logout":
+                Login(config).app_stop()
+                simple_report(
+                    __file__,
+                    log_path=Path(f"./log/{date}/report").resolve(),
+                    output=f"./log/{date}/report.html",
+                )
+            elif task == "mail":
+                Mail(config).run()
+            elif task == "mission":
+                Missions(config).run()
+            elif task == "sweep":
+                Sweep(config).run()
+            elif task == "weekly_reward":
+                WeeklyReward(config).run()
+            
+            break
+            
+        except Exception as e:
+            if "!_src.empty()" in str(e):
+                retry_count += 1
+                logger.warning(f"Screen capture failed (attempt {retry_count}/{max_retries}), retrying...")
+                if retry_count >= max_retries:
+                    logger.error(f"Failed to execute task '{task}' after {max_retries} attempts due to screen capture issues")
+                    simple_report(
+                        __file__,
+                        log_path=Path(f"./log/{date}/report").resolve(),
+                        output=f"./log/{date}/report.html",
+                    )
+                    raise
+            else:
+                simple_report(
+                    __file__,
+                    log_path=Path(f"./log/{date}/report").resolve(),
+                    output=f"./log/{date}/report.html",
+                )
+                logger.error(e)
+                raise
 
 
 def main():
