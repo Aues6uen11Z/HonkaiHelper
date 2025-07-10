@@ -1,6 +1,10 @@
 # HonkaiHelper
 基于图色识别和OCR的PC端崩坏3自动化脚本，先别退坑，刷刷日常凑登录天数吧~
 
+
+
+✨顺便看看如何使用DaCapo接管米家全家桶日常：[赛博代肝从开机到关机](https://github.com/Aues6uen11Z/DaCapo/blob/master/docs/%E8%B5%9B%E5%8D%9A%E4%BB%A3%E8%82%9D%E4%BB%8E%E5%BC%80%E6%9C%BA%E5%88%B0%E5%85%B3%E6%9C%BA.md)
+
 ## 功能
 
 - 挂远征、家园打工
