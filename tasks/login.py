@@ -17,6 +17,7 @@ from zafkiel import (
 )
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
+import pygetwindow as gw
 
 from config import Config
 from tasks.base.popup import popup_list, popup_handler
@@ -26,6 +27,40 @@ from tasks.base.page import page_main
 class Login(UI):
     def __init__(self, config: Config):
         self.config = config
+
+    def ensure_game_window_focus(self):
+        """确保游戏窗口获得焦点"""
+        if gw is None:
+            logger.warning("pygetwindow not available, cannot check window focus")
+            return False
+        
+        try:
+            windows = gw.getWindowsWithTitle("崩坏3")
+            if not windows:
+                logger.warning("游戏窗口未找到")
+                return False
+            
+            window = windows[0]
+            active_window = gw.getActiveWindow()
+            
+            # 检查是否已经有焦点
+            if active_window and active_window.title == window.title:
+                return True
+            
+            # 恢复窗口并激活
+            if window.isMinimized:
+                window.restore()
+                time.sleep(0.5)
+                logger.info("恢复了最小化的游戏窗口")
+            
+            window.activate()
+            time.sleep(0.5)
+            logger.info("激活了游戏窗口")
+            return True
+            
+        except Exception as e:
+            logger.error(f"设置游戏窗口焦点时出错: {e}")
+            return False
 
     def manage_log(self):
         log_retain_map = {
@@ -111,8 +146,8 @@ class Login(UI):
         self.app_start()
         self.handle_app_login()
 
-    @staticmethod
-    def check_update():
+    def check_update(self):
+        self.ensure_game_window_focus()
         if exists(Template(r"LOGIN_UPDATE.png", (0.002, -0.129))):
             find_click(Template(r"DOWNLOAD_CONFIRM.png", (0.0, 0.116)))
             logger.info("Game updating")
