@@ -32,7 +32,7 @@ page_commission.link(TPL_RETURN_BUTTON,
                      destination=page_armada)
 page_commission.link(TPL_HOME_BUTTON,
                      destination=page_main)
-page_armada.link(Template(r"ARMADA_GOTO_COMMISSION.png", (-0.113, 0.227), Keyword('委托回收')),
+page_armada.link(Template(r"ARMADA_GOTO_COMMISSION.png", (-0.113, 0.227), Keyword('委托回收'), local_search=False, ocr_mode=1),
                  destination=page_commission)
 
 # 舰团奖池界面
@@ -50,7 +50,7 @@ page_armada_contribution.link(TPL_RETURN_BUTTON,
                               destination=page_armada)
 page_armada_contribution.link(TPL_HOME_BUTTON,
                               destination=page_main)
-page_armada.link(Template(r"ARMADA_GOTO_CONTRIBUTION.png", (0.232, 0.23), Keyword('舰团贡献')),
+page_armada.link(Template(r"ARMADA_GOTO_CONTRIBUTION.png", (0.232, 0.23), Keyword('舰团贡献'), local_search=False, ocr_mode=1),
                  destination=page_armada_contribution)
 
 # BP任务界面
