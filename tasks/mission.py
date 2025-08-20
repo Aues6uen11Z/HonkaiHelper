@@ -34,7 +34,7 @@ class Missions(UI):
 
     def claim_daily_rewards(self):
         self.ui_goto(page_missions, TPL_BP_MISSIONS_TAB)
-        if find_click(Template(r"QUICK_CLAIM.png", (0.418, -0.187), Keyword('一键领取'), rgb=True), ocr_mode=1):
+        if find_click(Template(r"QUICK_CLAIM.png", (0.418, -0.187), Keyword('一键领取'), rgb=True, ocr_mode=1)):
             find_click(TPL_CONFIRM_BUTTON)
             logger.info('Daily rewards claim completed')
 

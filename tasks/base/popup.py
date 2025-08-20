@@ -49,7 +49,7 @@ class PopupHandler:
     # 深渊结算弹窗
     @run_until_true
     def handle_abyss_settle(self):
-        if exists(Template(r"ABYSS_SETTLE.png", (0.019, 0.147), Keyword('结算奖励')), ocr_mode=1):
+        if exists(Template(r"ABYSS_SETTLE.png", (0.019, 0.147), Keyword('结算奖励'), ocr_mode=1)):
             sleep(0.5)
             touch(Template(r"POPUP_MARGIN.png", (0.467, -0.252)), blind=True)
             return True

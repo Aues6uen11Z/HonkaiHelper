@@ -21,7 +21,7 @@ class Expeditions(UI):
                 raise LoopError('The operation has looped too many times')
 
             find_click(Template(r"QUICK_EXPEDITION.png", (0.409, 0.237), Keyword('一键远征')))
-            if exists(Template(r"EXPEDITION_NOT_AVAILABLE.png", (0.209, -0.045), Keyword('次数不足')), ocr_mode=1):
+            if exists(Template(r"EXPEDITION_NOT_AVAILABLE.png", (0.209, -0.045), Keyword('次数不足'), ocr_mode=1)):
                 find_click(Template(r"EXPEDITION_CANCEL.png", (-0.141, 0.205), Keyword('取消派遣')))
                 break
             if find_click(Template(r"EXPEDITION_DISPATCH.png", (0.14, 0.205), Keyword('远征派遣')), times=2):
