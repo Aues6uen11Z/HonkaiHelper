@@ -5,7 +5,7 @@ from zafkiel.ocr import DigitCounter, Keyword
 from zafkiel.ui import UI
 
 from config import Config
-from tasks.base.page import page_armada, page_commission, page_armada_rewards, TPL_CONFIRM_BUTTON
+from tasks.base.page import TPL_RETURN_BUTTON, page_armada, page_commission, page_armada_rewards, TPL_CONFIRM_BUTTON
 
 
 class Armada(UI):
@@ -51,10 +51,12 @@ class Armada(UI):
         ocr = DigitCounter(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225)))
         if ocr.ocr_single_line(screenshot())[0] == 0:
             find_click(Template(r"COMMISSION_REQUEST.png", (-0.36, 0.225)), blind=True)
-            find_click(Template(r"COMMISSION_REQUEST_FLAG.png", (-0.378, -0.18), Keyword('委托申请次数')),
-                       Template(r"COMMISSION_ACCEPT.png", (0.375, -0.079), Keyword('接受')),
-                       times=2)
-            logger.info('New commission request completed')
+            page_flag = Template(r"COMMISSION_REQUEST_FLAG.png", (-0.378, -0.18), Keyword('委托申请次数'))
+            if find_click(page_flag,
+                          Template(r"COMMISSION_ACCEPT.png", (0.375, -0.079), Keyword('接受')),
+                          times=2):
+                find_click(page_flag, TPL_RETURN_BUTTON, timeout=0)
+                logger.info('New commission request completed')
             return True
         return False
 
