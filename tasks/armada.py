@@ -1,4 +1,4 @@
-from zafkiel import Template, logger, Timer, exists, find_click, touch, screenshot
+from zafkiel import Template, logger, Timer, exists, find_click, touch, screenshot, sleep
 from zafkiel.decorator import run_until_true
 from zafkiel.exception import LoopError
 from zafkiel.ocr import DigitCounter, Keyword
@@ -57,6 +57,7 @@ class Armada(UI):
                           times=2):
                 find_click(page_flag, TPL_RETURN_BUTTON, timeout=0)
                 logger.info('New commission request completed')
+                sleep(0.5)
             return True
         return False
 
