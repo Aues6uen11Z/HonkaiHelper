@@ -66,6 +66,26 @@
           "disabled": false
         }
       }
+    },
+    "Update": {
+      "_Base": {
+        "env_name": {
+          "type": "input",
+          "value": "zafkiel",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        },
+        "python_version": {
+          "type": "input",
+          "value": "3.11",
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
+        }
+      }
     }
   },
   "Daily": {

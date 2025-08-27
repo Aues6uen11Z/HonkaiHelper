@@ -56,6 +56,17 @@ class TaskGeneral(BaseModel):
     Game: GroupGame = GroupGame()
 
 
+class TaskUpdate(BaseModel):
+    class GroupUpdatelBase(BaseModel):
+        """
+        General settings for the project
+        """
+        env_name: Item = Item('zafkiel')
+        python_version: Item = Item('3.11')
+
+    Base: GroupUpdatelBase = Field(GroupUpdatelBase(), alias='_Base')
+
+
 class TaskArmada(BaseModel):
     Base: GroupCustomBase = Field(GroupCustomBase(
         command=Item('py main.py -t armada', disabled=True), priority=Item(4)
@@ -143,6 +154,7 @@ class TaskWeeklyReward(BaseModel):
 # 任务组级别
 class MenuProject(BaseModel):
     General: TaskGeneral = TaskGeneral()
+    Update: TaskUpdate = TaskUpdate()
 
 
 class MenuDaily(BaseModel):
