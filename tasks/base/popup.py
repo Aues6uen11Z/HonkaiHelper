@@ -61,6 +61,11 @@ class PopupHandler:
         if find_click(Template(r"MONTHLY_CARD_CLAIM.png", (0.082, 0.234)), timeout=0):
             if find_click(TPL_CONFIRM_BUTTON, timeout=3):
                 return True
+        elif find_click(Template(r"MONTHLY_CARD_500_FLAG.png", (0.088, 0.244), Keyword('水晶'), ocr_mode=1),
+                        Template(r"MONTHLY_CARD_500_CLAIM.png", (0.446, 0.121)),
+                        timeout=0, blind=True):
+            if find_click(TPL_CONFIRM_BUTTON, timeout=3):
+                return True
         return False
 
 
