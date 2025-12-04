@@ -6,6 +6,7 @@ from pathlib import Path
 
 from loguru import logger
 from zafkiel import simple_report, auto_setup
+from zafkiel import Config as Zconfig
 from zafkiel.ui import UI
 
 from config import Config
@@ -163,9 +164,11 @@ def main():
             logger.error(f"{config_path} not found")
             return
         config = Config(config_path)
+        Zconfig.KEEP_FOREGROUND = config.data["Project"]["General"]["Game"]["keep_foreground"]
         single_task(config, args.task)
     else:
         config = Config("./config/default.json")
+        Zconfig.KEEP_FOREGROUND = config.data["Project"]["General"]["Game"]["keep_foreground"]
         all_tasks(config)
 
 
