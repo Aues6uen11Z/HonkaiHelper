@@ -64,6 +64,14 @@
           "hidden": false,
           "help": "",
           "disabled": false
+        },
+        "keep_foreground": {
+          "type": "checkbox",
+          "value": false,
+          "option": [],
+          "hidden": false,
+          "help": "",
+          "disabled": false
         }
       }
     },

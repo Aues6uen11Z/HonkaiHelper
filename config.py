@@ -51,6 +51,7 @@ class TaskGeneral(BaseModel):
     class GroupGame(BaseModel):
         game_path: Item = Item(type='file', value='')
         log_retain: Item = Item(type='select', value='1week', option=['1day', '3days', '1week', '1month'])
+        keep_foreground: Item = Item(type='checkbox', value=False)
 
     Base: GroupGeneralBase = Field(GroupGeneralBase(), alias='_Base')
     Game: GroupGame = GroupGame()
