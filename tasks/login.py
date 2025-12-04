@@ -127,6 +127,8 @@ class Login(UI):
 
     def app_start(self):
         subprocess.Popen([self.config.data["Project"]["General"]["Game"]["game_path"]])
+        sleep(15)
+
         date = datetime.datetime.now().strftime("%Y-%m-%d")
         auto_setup(
             str(Path.cwd()),
@@ -137,8 +139,6 @@ class Login(UI):
         )
         self.manage_log()
         self.get_popup_list(popup_list)
-
-        sleep(15)
         self.handle_app_login()
 
     def app_restart(self):
