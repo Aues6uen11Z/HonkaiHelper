@@ -4,7 +4,7 @@
       "Game": {
         "game_path": "G:\\miHoYo Launcher\\games\\Honkai Impact 3rd Game\\BH3.exe",
         "log_retain": "1week",
-        "keep_foreground": false
+        "keep_foreground": true
       }
     }
   },
