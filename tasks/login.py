@@ -14,7 +14,9 @@ from zafkiel import (
     sleep,
     exists,
     find_click,
+    Timer,
 )
+from zafkiel.exception import LoopError
 from zafkiel.ocr import Keyword
 from zafkiel.ui import UI
 
@@ -74,7 +76,11 @@ class Login(UI):
             confirm_time = 3.0
             logger.warning("Invalid confirm_time in config, using default value of 3.0")
 
+        loop_timer = Timer(120).start()
         while True:
+            if loop_timer.reached():
+                raise LoopError("The operation has looped too many times")
+
             if self.ui_additional():
                 continue
             if popup_handler.handle_abyss_settle():
