@@ -17,7 +17,7 @@ class PopupHandler:
     # 活动通知弹窗
     @staticmethod
     def handle_login_event():
-        rec_template = Template(r"POPUP_EVENT_FLAG.png", (0.0, 0.24))
+        rec_template = Template(r"POPUP_EVENT_FLAG.png", (0.0, 0.24), Keyword("点击空白区域关闭"))
         touch_template = Template(r"POPUP_MARGIN.png", (0.467, -0.252))
         return find_click(rec_template, timeout=0, touch_template=touch_template, blind=True)
 
