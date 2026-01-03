@@ -22,7 +22,7 @@ from zafkiel.ui import UI
 
 from config import Config
 from tasks.base.popup import popup_list, popup_handler
-from tasks.base.page import page_main
+from tasks.base.page import TPL_CONFIRM_BUTTON, page_main
 
 
 class Login(UI):
@@ -82,6 +82,8 @@ class Login(UI):
                 raise LoopError("The operation has looped too many times")
 
             if self.ui_additional():
+                continue
+            if find_click(TPL_CONFIRM_BUTTON):
                 continue
             if popup_handler.handle_abyss_settle():
                 continue
