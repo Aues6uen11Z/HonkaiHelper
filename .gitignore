@@ -147,3 +147,4 @@ config/config.json
 tools/
 .vscode/
 *.exe
+note.md
