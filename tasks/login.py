@@ -103,7 +103,8 @@ class Login(UI):
 
         date = datetime.datetime.now().strftime("%Y-%m-%d")
         auto_setup(
-            str(Path.cwd()),
+            basedir=str(Path.cwd()),
+            firing_time=120,
             logdir=f"./log/{date}/report",
             devices=[
                 "WindowsPlatform:///?title=崩坏3",
